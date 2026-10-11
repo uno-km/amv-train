@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+/**
+ * Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
+ */
 
 /**
  * termux-train: Node.js Global CLI Binary.

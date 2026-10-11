@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 # =======================================================================
 # termux-train: One-Touch Universal Automated Installer
 # Supported OS: Android Termux (ARM64/x86_64), Linux, macOS

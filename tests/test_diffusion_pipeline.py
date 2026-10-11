@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 AMEVA On-Device Image Folder Diffusion LoRA Pipeline Tests.
 Validates DDPM Noise Scheduling, Image Dataset VAE Latent Caching,

@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 AMEVA Heterogeneous Mobile Virtual RAM Pooling Distributed Training Tests.
 Validates 44GB Virtual RAM Pooling across Fleet (S25, S21, S20, A53, A35),

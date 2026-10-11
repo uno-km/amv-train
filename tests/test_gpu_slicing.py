@@ -1,3 +1,5 @@
+# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
 AMEVA Single-Device GPU Slicing Tests for termux-train.
 Covers Vocab Slicing, Chunked Dispatch, and Layer Streaming on TinyTransformerLM.

@@ -10,6 +10,14 @@
 
 ---
 
+## What's New in v2.1.0 — Vulkan Backend Line-Break Syntax Patch & DAG Autograd Hardening
+
+- Fixed CRLF line-break syntax error in Vulkan compute shader backend.
+- Hardened SafeTensors zero-copy memory mapping and LoRA gradient accumulation.
+- Standardized Apache-2.0 SPDX license headers and published npm package v2.1.0.
+
+---
+
 ## Executive Summary & Architecture Overview
 
 **Termux-Train v2.0.0** is an industrial-grade, zero-dependency deep learning framework engineered specifically for constrained ARM64 Bionic environments (Android Termux, mobile Linux, embedded edge devices). By combining a C-vectorized Directed Acyclic Graph (DAG) Autograd runtime with mobile hardware acceleration (Vulkan Compute, OpenCL, ARM64 NEON), Termux-Train enables full backward gradient propagation, parameter-efficient fine-tuning (LoRA / DoRA), and reinforcement learning directly on mobile devices.

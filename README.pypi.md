@@ -81,3 +81,10 @@ termux-train train --model tiny-transformer --data ./corpus.txt --vocab-slice 40
 
 ## License
 Apache-2.0 License. Copyright (c) 2026 Eunho Kim (@uno-km).
+
+
+## What's New in v2.1.0 — Vulkan Backend Line-Break Syntax Patch & DAG Autograd Hardening
+
+- Fixed CRLF line-break syntax error in Vulkan compute shader backend.
+- Hardened SafeTensors zero-copy memory mapping and LoRA gradient accumulation.
+- Standardized Apache-2.0 SPDX license headers and published npm package v2.1.0.

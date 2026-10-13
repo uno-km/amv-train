@@ -1,3 +1,14 @@
+# v2.1.0 (2026-10-13) — Vulkan Backend Line-Break Syntax Patch & DAG Autograd Hardening
+
+Resolved CRLF line-break syntax error in Vulkan compute backend and hardened SafeTensors zero-copy loading and on-device LoRA backpropagation.
+
+### Key Changes
+- Fixed CRLF line-break syntax error in Vulkan compute shader backend.
+- Hardened SafeTensors zero-copy memory mapping and LoRA gradient accumulation.
+- Standardized Apache-2.0 SPDX license headers and published npm package v2.1.0.
+
+---
+
 # Changelog
 
 All notable changes to 	ermux-train will be documented in this file.

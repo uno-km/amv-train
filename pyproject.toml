@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "termux-train"
+name = "amv-train"
 version = "2.1.0"
 description = "On-device deep learning & LoRA training framework utilizing device resources for Android Termux"
 readme = "README.md"

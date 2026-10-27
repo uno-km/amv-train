@@ -1,5 +1,5 @@
 {
-  "name": "termux-train",
+  "name": "amv-train",
   "version": "2.1.0",
   "description": "On-device deep learning & LoRA training framework utilizing device resources for Android Termux & ARM64",
   "main": "index.js",

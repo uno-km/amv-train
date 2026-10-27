@@ -1,10 +1,14 @@
-# Termux-Train (v2.0.0)
+# AMV-Train (v2.0.0)
 
-[![PyPI](https://img.shields.io/pypi/v/termux-train.svg?style=flat-square&color=0369a1)](https://pypi.org/project/termux-train/)
-[![Python](https://img.shields.io/pypi/pyversions/termux-train.svg?style=flat-square)](https://pypi.org/project/termux-train/)
-[![npm](https://img.shields.io/npm/v/termux-train.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/termux-train)
-[![npm downloads](https://img.shields.io/npm/dm/termux-train.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/termux-train)
-[![License](https://img.shields.io/badge/License-Apache_2.0-004499.svg?style=flat-square)](https://github.com/uno-km/termux-train)
+> **마이그레이션 안내**: 이 패키지는 `termux-train`에서 `amv-train`로 이름이 바뀌었습니다. 기존 `termux-train` 배포본(PyPI/npm)은 호환을 위해 당분간 유지되나 deprecated 상태이며 더 이상 갱신되지 않습니다. `pip install amv-train` / `npm install amv-train`로 전환하십시오.
+>
+> Android **Termux 환경** 또는 **안드로이드 Linux 커널(루팅 없이 Linux 환경이 구동되는 모든 디바이스)** 에서 동작합니다 — Termux 전용이 아닙니다.
+
+[![PyPI](https://img.shields.io/pypi/v/amv-train.svg?style=flat-square&color=0369a1)](https://pypi.org/project/amv-train/)
+[![Python](https://img.shields.io/pypi/pyversions/amv-train.svg?style=flat-square)](https://pypi.org/project/amv-train/)
+[![npm](https://img.shields.io/npm/v/amv-train.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/amv-train)
+[![npm downloads](https://img.shields.io/npm/dm/amv-train.svg?style=flat-square&color=b91c1c)](https://www.npmjs.com/package/amv-train)
+[![License](https://img.shields.io/badge/License-Apache_2.0-004499.svg?style=flat-square)](https://github.com/uno-km/amv-train)
 
 > **Unified Multimodal On-Device Deep Learning & LoRA Training Framework for Android Termux with 6-Modality Adapters (LLM, Diffusion, VLM, STT, TTS, BitNet), GPU Slicing, and 44GB Disaggregated Cluster Virtual RAM Pooling**
 
@@ -56,7 +60,7 @@
 2. **6-Modality Target-Aware Adapters**: Generates standard SafeTensors weights and companion `_config.json` manifests natively recognized by major desktop and mobile inference runtimes without conversion tooling.
 3. **Single-Device GPU Slicing**: Bypasses mobile Unified Memory Architecture (UMA) spikes and watchdog timeouts on ARM Mali and Qualcomm Adreno GPUs through granular vocabulary chunking and layer streaming.
 4. **44GB Disaggregated Cluster Virtual RAM Pooling**: Binds physical memory across heterogeneous mobile nodes (e.g., Galaxy S25, S21, S20, A53, A35) into an aggregated pipeline training session protected by a 300MB memory Guard-Band against the Android Low Memory Killer (LMK).
-5. **100% Dual-Engine Parity**: Complete feature and interface symmetry across Python CLI (`termux-train`), Node.js Global CLI (`termux-train`), Python Library (`import termux_train`), and Node.js SDK (`import { ... } from 'termux-train'`).
+5. **100% Dual-Engine Parity**: Complete feature and interface symmetry across Python CLI (`amv-train`), Node.js Global CLI (`amv-train`), Python Library (`import termux_train`), and Node.js SDK (`import { ... } from 'amv-train'`).
 
 ---
 
@@ -64,18 +68,18 @@
 
 ### 1. Via Python Package Index (PyPI)
 ```bash
-pip install termux-train
+pip install amv-train
 ```
 
 ### 2. Via Node Package Manager (npm)
 ```bash
-npm install -g termux-train
+npm install -g amv-train
 ```
 
 ### 3. Standalone Bootstrap Script (Termux One-Liner)
 ```bash
 pkg update && pkg install -y python nodejs clang
-bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-train/main/install.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/uno-km/amv-train/main/install.sh)
 ```
 
 ---
@@ -86,7 +90,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/uno-km/termux-train/main/inst
 Trains latent diffusion cross-attention LoRA layers. Integrates a deterministic DDPM noise scheduler, sinusoidal timestep MLP, and SHA-256 disk-based VAE latent caching to eliminate redundant image decoding across epochs. Outputs ComfyUI- and Diffusers-compatible SafeTensors adapters.
 
 ```bash
-termux-train diffusion-train \
+amv-train diffusion-train \
   --image-dir ./training_images \
   --prompt "high quality product photograph, 4k" \
   --output ./adapter_diffusion.safetensors \
@@ -103,7 +107,7 @@ termux-train diffusion-train \
 Trains multimodal projection adapters and visual cross-attention layers. Operates on image-text pairs formatted in LLaVA or Qwen2-VL visual question answering schemas. Directly bridges into the `termux-vision` mobile inference runtime.
 
 ```bash
-termux-train vision-train \
+amv-train vision-train \
   --data ./vlm_dataset.jsonl \
   --output ./adapter_vision.safetensors \
   --epochs 3 \
@@ -118,7 +122,7 @@ termux-train vision-train \
 Performs acoustic adaptation on Whisper encoder-decoder attention blocks. Features automated Mel filterbank spectrogram extraction and persistent caching. Natively consumable by `termux-stt`.
 
 ```bash
-termux-train stt-train \
+amv-train stt-train \
   --data ./speech_corpus.jsonl \
   --output ./adapter_stt.safetensors \
   --epochs 4 \
@@ -132,7 +136,7 @@ termux-train stt-train \
 Fine-tunes speaker embedding and acoustic style parameters for neural speech synthesis. Generates low-rank voice profile adapters directly compatible with `termux-tts`.
 
 ```bash
-termux-train tts-train \
+amv-train tts-train \
   --data ./voice_samples.jsonl \
   --output ./adapter_tts.safetensors \
   --epochs 5 \
@@ -146,7 +150,7 @@ termux-train tts-train \
 Trains LoRA / DoRA weight matrices over multi-head attention and feed-forward projections with RoPE positional encodings. Supports single-device GPU slicing flags to eliminate out-of-memory crashes on mobile GPUs. Exports standard GGUF PEFT adapters for `llama.cpp`.
 
 ```bash
-termux-train train \
+amv-train train \
   --model tiny-transformer \
   --data ./training_corpus.txt \
   --output ./adapter_llm.safetensors \
@@ -164,7 +168,7 @@ termux-train train \
 Applies dynamic activation scaling and ternary weight quantization $\{-1, 0, +1\}$ during forward and backward passes. Directly exports quantized kernels compatible with `bitnet.cpp` and `termux-bitnet`.
 
 ```bash
-termux-train train \
+amv-train train \
   --model bitnet \
   --quantize-bits 1.58 \
   --data ./corpus.txt \
@@ -233,9 +237,9 @@ To neutralize these constraints:
 > **Prerequisite: Official AMEVA Cluster Runtime (`ameva-cluster`) Required**  
 > Multi-device distributed memory pooling and cross-device tensor pipeline execution require the official **`ameva-cluster`** control plane. Single-device training (CPU, Vulkan, OpenCL) runs entirely standalone, but distributed cluster pooling features will raise `ClusterLicenseRequiredError` (E403) unless `ameva-cluster` is installed.  
 > ```bash
-> pip install ameva-cluster termux-train
+> pip install ameva-cluster amv-train
 > # or via npm:
-> npm install -g @ameva/cluster termux-train
+> npm install -g @ameva/cluster amv-train
 > ```
 
 When training deep learning models that exceed physical mobile device memory (e.g. 7B+ parameter models, high-resolution diffusion unets, or multimodal projectors), Termux-Train binds heterogeneous smartphone clusters into a unified virtual memory pool. Idle mobile devices contribute unallocated LPDDR RAM via lightweight worker daemons managed by AMEVA Cluster.
@@ -267,7 +271,7 @@ When training deep learning models that exceed physical mobile device memory (e.
 Ensure all participating smartphones are connected to the same local Wi-Fi network, router, or tethered hotspot. Verify TCP port `50052` is accessible between nodes:
 ```bash
 pkg update && pkg install -y python clang netcat-openbsd
-pip install --upgrade ameva-cluster termux-train
+pip install --upgrade ameva-cluster amv-train
 ```
 
 #### Step 2: Launching Cluster Workers on Contributor Nodes
@@ -276,21 +280,21 @@ On each memory-contributor smartphone (e.g., Galaxy S21, S20, A53), start the wo
 # Option A: Directly through ameva-cluster
 ameva-cluster worker --port 50052 --guard-band 300
 
-# Option B: Through termux-train CLI bridge
-termux-train cluster-worker --port 50052 --guard-band 300
+# Option B: Through amv-train CLI bridge
+amv-train cluster-worker --port 50052 --guard-band 300
 ```
 
 #### Step 3: Probing and Discovering Fleet Nodes
 On your primary coordinator smartphone (e.g., Galaxy S25), run a cluster probe to inspect node reachability, available LPDDR memory headroom, and network round-trip ping times:
 ```bash
-termux-train cluster-probe --fleet 192.168.1.101:50052,192.168.1.102:50052,192.168.1.103:50052
+amv-train cluster-probe --fleet 192.168.1.101:50052,192.168.1.102:50052,192.168.1.103:50052
 ```
 
 #### Step 4: Initiating Distributed Virtual RAM Pipeline Training
 Train across the aggregated 44GB virtual RAM pool with zero changes to model architecture:
 ```bash
 # Distributed LLM LoRA Training with GPU Slicing
-termux-train train \
+amv-train train \
   --model tiny-transformer \
   --data ./large_corpus.txt \
   --output ./cluster_adapter.safetensors \
@@ -301,7 +305,7 @@ termux-train train \
   --backend vulkan
 
 # Distributed Image Diffusion LoRA Training
-termux-train diffusion-train \
+amv-train diffusion-train \
   --image-dir ./dataset \
   --output ./diff_cluster_adapter.safetensors \
   --virtual-ram-pool 192.168.1.101:50052,192.168.1.102:50052 \
@@ -310,7 +314,7 @@ termux-train diffusion-train \
 ```
 
 #### Step 5: MasterTunnel Cryptographic Loopback Security
-When passing sensitive weights and intermediate activations across untrusted Wi-Fi subnets, `termux-train` and `ameva-cluster` automatically spawn an authenticated `MasterTunnel` that wraps all inter-device gRPC/HTTP RPC traffic with an ephemeral SHA-256 cryptographic handshake.
+When passing sensitive weights and intermediate activations across untrusted Wi-Fi subnets, `amv-train` and `ameva-cluster` automatically spawn an authenticated `MasterTunnel` that wraps all inter-device gRPC/HTTP RPC traffic with an ephemeral SHA-256 cryptographic handshake.
 
 ---
 
@@ -341,7 +345,7 @@ print(f"Final training loss: {metrics['final_loss']:.4f}")
 
 ### Node.js / TypeScript SDK
 ```typescript
-import { trainDiffusion, trainVision, trainSTT, TermuxTrainer } from 'termux-train';
+import { trainDiffusion, trainVision, trainSTT, TermuxTrainer } from 'amv-train';
 
 // Asynchronous image diffusion fine-tuning
 const result = await trainDiffusion({

@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "bin": {
-    "termux-train": "bin/cli.js",
+    "amv-train": "bin/cli.js",
     "tt": "bin/cli.js"
   },
   "files": [
@@ -42,10 +42,10 @@
   "homepage": "https://uno-km.vercel.app/lib/train/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uno-km/termux-train.git"
+    "url": "git+https://github.com/uno-km/amv-train.git"
   },
   "bugs": {
-    "url": "https://github.com/uno-km/termux-train/issues"
+    "url": "https://github.com/uno-km/amv-train/issues"
   },
   "dependencies": {},
   "optionalDependencies": {

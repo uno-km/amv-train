@@ -1,79 +1,55 @@
-# Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0 OR Commercial-License
-"""
-termux-train (AMEVA-Termux)
-===========================
-Native On-Device Deep Learning & Autograd Training Framework for Android Termux.
-"""
+# SPDX-License-Identifier: Apache-2.0
+"""Deprecated alias of :mod:`amv_train`.
 
-__version__ = "2.1.0"
-__author__ = "AMEVA Team"
+WHAT: ``import termux_train`` (and ``import termux_train.<sub>``) keeps working and returns the
+      very same module objects as ``amv_train``.
+WHY:  the package was renamed from termux-train to amv-train in 3.0.0; user code
+      written against the old import name should not break on upgrade.
+HOW:  a meta-path finder maps every ``termux_train.*`` name to ``amv_train.*`` and this
+      package replaces itself in ``sys.modules`` with ``amv_train``.
 
-from .backend import get_backend, set_backend, available_backends
-from .tensor import Tensor, tensor, zeros, ones, zeros_like, ones_like, randn, no_grad
-from . import nn
-from . import optim
-from . import runtime
-from . import tokenization
-from . import checkpoint
-from . import data
-from . import cluster
-from . import rl
-from . import adapters
-from . import diffusion
-from . import vision
-from . import audio
-from .exceptions import ClusterConnectionError, ClusterConfigurationError
-from .cluster import (
-    parse_cluster_rpc_spec,
-    verify_rpc_cluster_nodes,
-    verify_rpc_cluster_health,
-    VirtualNodeInfo,
-    VirtualRAMPool,
+This alias will be removed in a future major release. Import ``amv_train`` instead.
+"""
+import importlib
+import importlib.abc
+import importlib.util
+import sys
+import warnings
+
+_OLD = "termux_train"
+_NEW = "amv_train"
+
+warnings.warn(
+    f"'{_OLD}' was renamed to '{_NEW}'; import '{_NEW}' instead. "
+    "The old name will be removed in a future major release.",
+    DeprecationWarning,
+    stacklevel=2,
 )
-from .cluster_trainer import ClusterWorkerServer, ClusterPipelineSession
-from .utils.termux_env import is_termux, is_android, get_device_info
 
-__all__ = [
-    # Core
-    "Tensor",
-    "tensor",
-    "zeros",
-    "ones",
-    "zeros_like",
-    "ones_like",
-    "randn",
-    "no_grad",
-    
-    # Submodules
-    "nn",
-    "optim",
-    "runtime",
-    "tokenization",
-    "checkpoint",
-    "data",
-    "cluster",
-    "rl",
-    "adapters",
-    "diffusion",
-    "vision",
-    "audio",
-    
-    # Backend
-    "get_backend",
-    "set_backend",
-    "available_backends",
-    
-    # Environment & Diagnostics
-    "is_termux",
-    "is_android",
-    "get_device_info",
 
-    # Cluster Virtual RAM Pooling
-    "VirtualNodeInfo",
-    "VirtualRAMPool",
-    "ClusterWorkerServer",
-    "ClusterPipelineSession",
-    
-    "__version__",
-]
+class _AliasLoader(importlib.abc.Loader):
+    def create_module(self, spec):
+        return importlib.import_module(_NEW + spec.name[len(_OLD):])
+
+    def exec_module(self, module):
+        return None
+
+
+class _AliasFinder(importlib.abc.MetaPathFinder):
+    _loader = _AliasLoader()
+
+    def find_spec(self, fullname, path=None, target=None):
+        if not fullname.startswith(_OLD + "."):
+            return None
+        if fullname.endswith(".__main__"):
+            # Let runpy load amv_train/__main__.py through the normal path finder.
+            return None
+        return importlib.util.spec_from_loader(fullname, self._loader)
+
+
+if not any(getattr(f, "_amv_alias_of", None) == _OLD for f in sys.meta_path):
+    _finder = _AliasFinder()
+    _finder._amv_alias_of = _OLD
+    sys.meta_path.insert(0, _finder)
+
+sys.modules[_OLD] = importlib.import_module(_NEW)

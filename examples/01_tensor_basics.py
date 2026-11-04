@@ -19,11 +19,11 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, set_backend, get_backend, available_backends, tensor, zeros, ones
+from amv_train import Tensor, set_backend, get_backend, available_backends, tensor, zeros, ones
 
 def run_example_a():
     print("----------------------------------------------------------------")
@@ -71,7 +71,7 @@ def run_example_b():
 
 def main():
     print("================================================================")
-    print("📱 termux-train (AMEVA-Termux) - Core Tensor & Autograd Demo")
+    print("📱 amv-train (AMEVA-Termux) - Core Tensor & Autograd Demo")
     print("================================================================")
     
     # Pluggable Backend Setup

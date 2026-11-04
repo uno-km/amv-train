@@ -11,12 +11,12 @@ import json
 import tempfile
 import pytest
 
-import termux_train as tt
-from termux_train import Tensor
-from termux_train.data.vision_dataset import VisionQADataset
-from termux_train.vision.vlm_lora import MultimodalProjectorLoRA, VisionLanguageModelLoRA
-from termux_train.vision.trainer import train_vision_vlm_lora
-from termux_train.checkpoint.safetensors import load_safetensors
+import amv_train as tt
+from amv_train import Tensor
+from amv_train.data.vision_dataset import VisionQADataset
+from amv_train.vision.vlm_lora import MultimodalProjectorLoRA, VisionLanguageModelLoRA
+from amv_train.vision.trainer import train_vision_vlm_lora
+from amv_train.checkpoint.safetensors import load_safetensors
 
 
 @pytest.fixture
@@ -106,7 +106,7 @@ def test_vlm_lora_isolation_and_forward_backward():
     assert logits.shape == (B, S_text, vocab_size)
 
     # Compute loss & backward
-    from termux_train.nn.loss import cross_entropy_loss
+    from amv_train.nn.loss import cross_entropy_loss
     loss = cross_entropy_loss(logits, targets)
     assert float(loss.item()) > 0.0
 
@@ -148,9 +148,9 @@ def test_train_vision_vlm_lora_end_to_end(temp_vision_dir):
 
 
 def test_cli_vision_train_args():
-    from termux_train.cli import main
+    from amv_train.cli import main
     import sys
-    test_args = ["termux-train", "vision-train", "--help"]
+    test_args = ["amv-train", "vision-train", "--help"]
     with pytest.raises(SystemExit) as exc_info:
         sys.argv = test_args
         main()

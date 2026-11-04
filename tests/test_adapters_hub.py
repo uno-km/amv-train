@@ -11,11 +11,11 @@ llamacpp, bitnet, diffusion, vision, tts, stt.
 import os
 import json
 import pytest
-from termux_train.nn.linear import Linear
-from termux_train.nn.lora import LoRALinear
-from termux_train.nn.dora import DoRALinear
-from termux_train.adapters.hub import export_target_adapter, TargetEcosystem
-from termux_train.checkpoint.safetensors import load_safetensors
+from amv_train.nn.linear import Linear
+from amv_train.nn.lora import LoRALinear
+from amv_train.nn.dora import DoRALinear
+from amv_train.adapters.hub import export_target_adapter, TargetEcosystem
+from amv_train.checkpoint.safetensors import load_safetensors
 
 
 def test_export_all_6_targets(tmp_path):

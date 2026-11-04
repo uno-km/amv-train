@@ -1,3 +1,15 @@
+# v3.0.0 (2026-11-04) — Python import name follows the amv-train package name
+
+### Changed
+- The Python package is now `amv_train` (previously `termux_train`). Code, CLI entry points, scripts, docs and cross-package references use the amv-* names.
+- `import termux_train` keeps working through a deprecated alias that returns the same module objects and emits a `DeprecationWarning`. The alias will be removed in a future major release.
+
+### Unchanged
+- On-disk cache and data directories (for example `~/.cache/termux-*`) keep their names, so models already downloaded on devices stay in use.
+- Termux platform commands (`termux-tts-speak`, `termux-wake-lock`, `termux-api`, ...) keep their names.
+
+---
+
 # v2.1.0 (2026-10-13) — Vulkan Backend Line-Break Syntax Patch & DAG Autograd Hardening
 
 Resolved CRLF line-break syntax error in Vulkan compute backend and hardened SafeTensors zero-copy loading and on-device LoRA backpropagation.

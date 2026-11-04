@@ -13,9 +13,9 @@ Comprehensive Test Suite for Big-Tech Production Features:
 import os
 import tempfile
 import pytest
-from termux_train import Tensor, nn, set_backend, available_backends
-from termux_train.checkpoint import save_safetensors, load_safetensors
-from termux_train.data import MMapTokenDataset
+from amv_train import Tensor, nn, set_backend, available_backends
+from amv_train.checkpoint import save_safetensors, load_safetensors
+from amv_train.data import MMapTokenDataset
 
 
 @pytest.mark.parametrize("backend_name", available_backends())

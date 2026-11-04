@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 # ==============================================================================
-# termux-train (AMEVA-Termux) - SSH Server Script
+# amv-train (AMEVA-Termux) - SSH Server Script
 # ==============================================================================
 
 set -e
@@ -10,7 +10,7 @@ set -e
 PORT=8022
 
 echo "========================================================"
-echo "🔒 [termux-train] Starting Termux SSH Server on Port $PORT"
+echo "🔒 [amv-train] Starting Termux SSH Server on Port $PORT"
 echo "========================================================"
 
 # Ensure OpenSSH is installed

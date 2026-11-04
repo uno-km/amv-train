@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://uno-km.github.io/termux-train/</loc>
+    <loc>https://uno-km.github.io/amv-train/</loc>
     <image:image>
-      <image:loc>https://uno-km.github.io/termux-train/favicon.svg</image:loc>
-      <image:title>termux-train Logo</image:title>
+      <image:loc>https://uno-km.github.io/amv-train/favicon.svg</image:loc>
+      <image:title>amv-train Logo</image:title>
     </image:image>
   </url>
 </urlset>

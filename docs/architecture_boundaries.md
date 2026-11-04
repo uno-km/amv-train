@@ -1,7 +1,7 @@
 # Architecture Boundaries & Security Contracts
 
 > **Standard:** AMEVA-Termux Engine Architecture Policy  
-> **Target:** `termux-train` (Android Termux Pure Python/C-Extension ML Framework)
+> **Target:** `amv-train` (Android Termux Pure Python/C-Extension ML Framework)
 
 ---
 
@@ -10,7 +10,7 @@
 - In-place gradient accumulation (`grad += ...`) is strictly preferred to avoid garbage collection pressure during mobile training runs.
 
 ## 2. Platform Isolation Boundaries
-- `termux-train` operates strictly within unprivileged Android user space.
+- `amv-train` operates strictly within unprivileged Android user space.
 - Any root privilege escalation or privileged shell execution (`su`) is strictly prohibited.
 - Native shared libraries (`.so`) MUST link only against Android Bionic libc and NDK system symbols.
 

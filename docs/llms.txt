@@ -1,14 +1,14 @@
-# Termux-Train (v1.0.0)
+# AMV-Train (v1.0.0)
 > Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework
 
 ## Quick Specification for AI Coding Agents
-- Official Repo: https://github.com/uno-km/termux-train
-- Installation: `pip install termux-train`
+- Official Repo: https://github.com/uno-km/amv-train
+- Installation: `pip install amv-train`
 - Architecture: Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy serialization and memory-mapped LoRA backpropagation on ARM64.
 
 ## Canonical Code Pattern
 ```python
-import termux_train as tt
+import amv_train as tt
 
 # 1. Define model with LoRA layers
 model = tt.nn.TransformerLoRA(vocab_size=32000, dim=512, lora_rank=8)

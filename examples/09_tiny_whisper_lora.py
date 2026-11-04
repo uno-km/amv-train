@@ -19,13 +19,13 @@ try:
     if hasattr(sys.stderr, "reconfigure"):
         sys.stderr.reconfigure(encoding="utf-8")
 except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 # Set project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from termux_train import Tensor, nn, optim, checkpoint, set_backend, get_backend
-from termux_train.tokenization import WordTokenizer
+from amv_train import Tensor, nn, optim, checkpoint, set_backend, get_backend
+from amv_train.tokenization import WordTokenizer
 
 
 class TinyWhisperEncoder(nn.Module):
@@ -104,7 +104,7 @@ def generate_synthetic_audio_mel(batch_size: int, time_steps: int, mel_bins: int
 
 def main():
     print("=" * 70)
-    print("  🎙️ [termux-train] On-Device Tiny Whisper LoRA Fine-Tuning Demo")
+    print("  🎙️ [amv-train] On-Device Tiny Whisper LoRA Fine-Tuning Demo")
     print("=" * 70)
 
     set_backend("auto")
@@ -231,7 +231,7 @@ def main():
         os.remove(adapter_path)
 
     print("\n" + "=" * 70)
-    print("  ✅ [termux-train] Tiny Whisper LoRA Demo 100% SUCCESS!")
+    print("  ✅ [amv-train] Tiny Whisper LoRA Demo 100% SUCCESS!")
     print("=" * 70)
 
 

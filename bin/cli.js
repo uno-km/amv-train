@@ -5,7 +5,7 @@
  */
 
 /**
- * termux-train: Node.js Global CLI Binary.
+ * amv-train: Node.js Global CLI Binary.
  * High-performance on-device Deep Learning & LoRA Training Framework.
  * Open-Source under Apache License 2.0.
  */
@@ -51,8 +51,8 @@ function hasFlag(flag, alias = null) {
 }
 
 function printHelp() {
-  console.log(`termux-train CLI v${version} (Unified Node.js & Python Dual Engine)`);
-  console.log('Usage: termux-train <command> [options]\n');
+  console.log(`amv-train CLI v${version} (Unified Node.js & Python Dual Engine)`);
+  console.log('Usage: amv-train <command> [options]\n');
   console.log('Core Commands:');
   console.log('  doctor                           Inspect device hardware, RAM tier, and Vulkan GPU');
   console.log('  check                            Run self-diagnostic mathematical checks across backends');
@@ -87,7 +87,7 @@ function printHelp() {
 
 async function main() {
   if (hasFlag('-v') || hasFlag('--version')) {
-    console.log(`termux-train ${version}`);
+    console.log(`amv-train ${version}`);
     process.exit(0);
   }
 
@@ -103,10 +103,10 @@ async function main() {
     if (isJson) {
       console.log(JSON.stringify(rep, null, 2));
     } else {
-      console.log('=== termux-train Diagnostic Doctor (Node.js Engine) ===');
+      console.log('=== amv-train Diagnostic Doctor (Node.js Engine) ===');
       console.log(`  Platform       : ${rep.platform.system} (${rep.platform.arch}) | Android/Termux: ${rep.platform.isAndroid || rep.platform.isTermux}`);
       console.log(`  Hardware Tier  : ${rep.hardware.tier} (RAM: ${rep.hardware.totalRamMb}MB | Cores: ${rep.hardware.cpuCores})`);
-      console.log(`  Python Runtime : ${rep.python.available ? rep.python.version : 'NOT FOUND'} (${rep.python.moduleInstalled ? 'termux_train installed' : 'module missing'})`);
+      console.log(`  Python Runtime : ${rep.python.available ? rep.python.version : 'NOT FOUND'} (${rep.python.moduleInstalled ? 'amv_train installed' : 'module missing'})`);
       console.log(`  Vulkan GPU     : ${rep.vulkan.status}`);
       console.log(`  Preset Config  : Max LoRA Rank r=${rep.recommendedTrainingConfig.loraRank} | Batch Size=${rep.recommendedTrainingConfig.batchSize}`);
       console.log(`  Overall Status : ${rep.status}`);
@@ -122,7 +122,7 @@ async function main() {
       if (isJson) {
         console.log(JSON.stringify(res, null, 2));
       } else {
-        console.log(`=== termux-train Benchmark (Dimension: ${res.dimension}) ===`);
+        console.log(`=== amv-train Benchmark (Dimension: ${res.dimension}) ===`);
         console.log(`  Backend                   : ${res.backend}`);
         console.log(`  Forward GEMM Latency      : ${res.gemmLatencyMs} ms`);
         console.log(`  Full Autograd Step (F+B)  : ${res.autogradStepLatencyMs} ms`);
@@ -208,7 +208,7 @@ async function main() {
       console.error('[ERROR] Python runtime is required to execute native training pipelines.');
       process.exit(1);
     }
-    const pyArgs = ['-m', 'termux_train.cli', ...args];
+    const pyArgs = ['-m', 'amv_train.cli', ...args];
     const res = spawnSync(pyCmd, pyArgs, { stdio: 'inherit' });
     process.exit(res.status || 0);
   }

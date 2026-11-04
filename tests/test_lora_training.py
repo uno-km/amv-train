@@ -26,8 +26,8 @@ import tempfile
 import pytest
 from unittest.mock import patch
 
-from termux_train import Tensor, nn, optim, runtime, set_backend, available_backends
-from termux_train.runtime import (
+from amv_train import Tensor, nn, optim, runtime, set_backend, available_backends
+from amv_train.runtime import (
     MobileTrainer,
     save_lora_checkpoint,
     load_lora_checkpoint,

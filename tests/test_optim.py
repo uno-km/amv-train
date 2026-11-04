@@ -3,7 +3,7 @@
 """
 tests/test_optim.py
 ===================
-Comprehensive unit, numerical, and contract hardening test suite for termux_train.optim.
+Comprehensive unit, numerical, and contract hardening test suite for amv_train.optim.
 Tests:
   - Base validation (empty, duplicate, zero-size, real-number, bool, NaN/Inf)
   - Parameter shape lock & post-construction mutation detection
@@ -18,9 +18,9 @@ Tests:
 import copy
 import math
 import pytest
-from termux_train import Tensor, available_backends, set_backend
-from termux_train.nn.parameter import Parameter
-from termux_train.optim import Optimizer, SGD, Adam, AdamW
+from amv_train import Tensor, available_backends, set_backend
+from amv_train.nn.parameter import Parameter
+from amv_train.optim import Optimizer, SGD, Adam, AdamW
 
 @pytest.fixture(params=["python"] + (["numpy"] if "numpy" in available_backends() else []))
 def active_backend(request):

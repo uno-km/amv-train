@@ -16,8 +16,8 @@ Tests:
 
 import math
 import pytest
-from termux_train import Tensor, zeros, ones, randn, get_backend, set_backend, available_backends
-from termux_train.utils.gradcheck import gradcheck
+from amv_train import Tensor, zeros, ones, randn, get_backend, set_backend, available_backends
+from amv_train.utils.gradcheck import gradcheck
 
 
 # =============================================================================

@@ -13,7 +13,7 @@ Test suite validating the resolution of all critical audit vulnerabilities:
 
 import math
 import pytest
-from termux_train import Tensor, nn, optim, set_backend, available_backends
+from amv_train import Tensor, nn, optim, set_backend, available_backends
 
 
 # =============================================================================

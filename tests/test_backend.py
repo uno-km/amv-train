@@ -7,12 +7,12 @@ Verify parity and accuracy between PythonBackend and NumPyBackend.
 """
 
 import pytest
-from termux_train.backend import PythonBackend, available_backends
-from termux_train.backend.base import BaseBackend
+from amv_train.backend import PythonBackend, available_backends
+from amv_train.backend.base import BaseBackend
 
 backends_to_test = [PythonBackend()]
 if "numpy" in available_backends():
-    from termux_train.backend.numpy_backend import NumPyBackend
+    from amv_train.backend.numpy_backend import NumPyBackend
     backends_to_test.append(NumPyBackend())
 
 @pytest.mark.parametrize("backend", backends_to_test)
@@ -138,8 +138,8 @@ def test_backend_take(backend: BaseBackend):
     reason="NumPy backend is unavailable",
 )
 def test_matmul_all_rank_combinations_backend_parity():
-    from termux_train.backend.python_backend import PythonBackend
-    from termux_train.backend.numpy_backend import NumPyBackend
+    from amv_train.backend.python_backend import PythonBackend
+    from amv_train.backend.numpy_backend import NumPyBackend
     python_backend = PythonBackend()
     numpy_backend = NumPyBackend()
 
@@ -173,7 +173,7 @@ def test_matmul_all_rank_combinations_backend_parity():
 def test_vulkan_backend_batched_matmul_3d_4d():
     """Verify VulkanBackend handles 3D and 4D Transformer Attention tensors seamlessly."""
     import numpy as np
-    from termux_train.backend.vulkan_backend import VulkanBackend
+    from amv_train.backend.vulkan_backend import VulkanBackend
     vk = VulkanBackend()
 
     # 3D: (2, 3, 4) @ (2, 4, 5) -> (2, 3, 5)

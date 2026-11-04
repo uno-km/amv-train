@@ -21,13 +21,13 @@ sys.stdout.reconfigure(encoding='utf-8')
 # Ensure project root is in python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, nn, optim, set_backend, available_backends
-from termux_train.data import DocFoldDataset, DocFoldRecord
+from amv_train import Tensor, nn, optim, set_backend, available_backends
+from amv_train.data import DocFoldDataset, DocFoldRecord
 
 
 def main():
     print("=" * 70)
-    print("  📑 [termux-train] DocFold Sequence Mapping Toy Trainer")
+    print("  📑 [amv-train] DocFold Sequence Mapping Toy Trainer")
     print("=" * 70)
 
     # 1. Select Backend
@@ -111,7 +111,7 @@ def main():
     print(f"[*] Generated Structured Output:\n    '{decoded_output}'\n")
 
     print("======================================================================")
-    print("  ✅ [termux-train] Demo 08 Completed Successfully!")
+    print("  ✅ [amv-train] Demo 08 Completed Successfully!")
     print("======================================================================")
 
 

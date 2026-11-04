@@ -13,7 +13,7 @@ Comprehensive Test Suite for nn.Embedding Layer:
 """
 
 import pytest
-from termux_train import Tensor, nn, set_backend, available_backends
+from amv_train import Tensor, nn, set_backend, available_backends
 
 
 @pytest.mark.parametrize("backend_name", available_backends())

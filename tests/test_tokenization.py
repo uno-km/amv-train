@@ -22,7 +22,7 @@ import sys
 import subprocess
 import copy
 import pytest
-from termux_train.tokenization import (
+from amv_train.tokenization import (
     BaseTokenizer,
     CharTokenizer,
     ByteTokenizer,
@@ -121,11 +121,11 @@ def test_token_to_id_and_id_to_token_lookups():
 # =============================================================================
 
 def test_tokenizer_serialization_valid_round_trip():
-    corpus = ["Hello, world! 123", "Termux-Train Tokenizer"]
+    corpus = ["Hello, world! 123", "AMV-Train Tokenizer"]
     orig_tok = CharTokenizer().build_vocab(corpus)
 
     data = orig_tok.to_dict()
-    assert data["format"] == "termux-train-tokenizer"
+    assert data["format"] == "amv-train-tokenizer"
     assert data["version"] == "1.0"
     assert data["tokenizer_type"] == "CharTokenizer"
     assert isinstance(data["vocab"], dict)
@@ -276,7 +276,7 @@ import sys
 sys.modules["numpy"] = None
 sys.modules["torch"] = None
 
-from termux_train.tokenization import CharTokenizer, ByteTokenizer, WordTokenizer
+from amv_train.tokenization import CharTokenizer, ByteTokenizer, WordTokenizer
 
 # CharTokenizer test
 c_tok = CharTokenizer().build_vocab(["hello world 123"])
@@ -399,7 +399,7 @@ def test_char_tokenizer_min_freq_and_max_vocab_size():
 
 
 def test_char_tokenizer_known_vocab_exact_round_trip():
-    text = "Hello, World!\nThis is a Termux-Train CharTokenizer test 123.\tTabs and symbols: @#$%^&*()_+"
+    text = "Hello, World!\nThis is a AMV-Train CharTokenizer test 123.\tTabs and symbols: @#$%^&*()_+"
     tok = CharTokenizer().build_vocab([text])
 
     encoded = tok.encode(text)
@@ -424,7 +424,7 @@ def test_char_tokenizer_unknown_character_policy():
 
 
 def test_char_tokenizer_unicode_multilingual_and_emoji():
-    multilingual = "안녕하세요! 🚀 딥러닝 PyTorch Termux-Train (株) Café 123"
+    multilingual = "안녕하세요! 🚀 딥러닝 PyTorch AMV-Train (株) Café 123"
     tok = CharTokenizer().build_vocab([multilingual])
 
     encoded = tok.encode(multilingual)

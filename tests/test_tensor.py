@@ -7,7 +7,7 @@ Unit tests for Tensor data model, shape inference, operators, and representation
 """
 
 import pytest
-from termux_train import Tensor, zeros, ones, zeros_like, ones_like, randn, set_backend, get_backend, available_backends
+from amv_train import Tensor, zeros, ones, zeros_like, ones_like, randn, set_backend, get_backend, available_backends
 
 @pytest.fixture(params=["python"] + (["numpy"] if "numpy" in available_backends() else []))
 def active_backend(request):

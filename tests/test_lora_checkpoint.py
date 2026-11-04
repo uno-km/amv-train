@@ -3,7 +3,7 @@
 """
 tests/test_lora_checkpoint.py
 =============================
-Exhaustive, rigorous test suite for termux_train.runtime Safe LoRA Checkpointing.
+Exhaustive, rigorous test suite for amv_train.runtime Safe LoRA Checkpointing.
 Tests:
   - Public API contract combination matrix (A, B, C, D)
   - Outer container & exact payload schema validation
@@ -27,8 +27,8 @@ import tempfile
 import pytest
 from unittest.mock import patch, mock_open
 
-from termux_train import Tensor, nn, optim, available_backends, set_backend
-from termux_train.runtime import (
+from amv_train import Tensor, nn, optim, available_backends, set_backend
+from amv_train.runtime import (
     save_lora_checkpoint,
     load_lora_checkpoint,
     CheckpointError,
@@ -475,7 +475,7 @@ def test_lora_checkpoint_load_rollback_and_failure_chaining(temp_dir, active_bac
     target_opt = optim.Adam(target_model.adapter_parameters(), lr=0.01)
 
     # 1. Rollback failure injection on adapter: both load and rollback fail -> CheckpointRollbackError
-    with patch("termux_train.runtime.checkpoint.load_adapter_state_dict", side_effect=RuntimeError("Adapter load/rollback crash")):
+    with patch("amv_train.runtime.checkpoint.load_adapter_state_dict", side_effect=RuntimeError("Adapter load/rollback crash")):
         with pytest.raises(CheckpointRollbackError) as exc_info:
             load_lora_checkpoint(ckpt_path, model=target_model, optimizer=target_opt)
 

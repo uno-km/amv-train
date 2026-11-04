@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-AMEVA Single-Device GPU Slicing Tests for termux-train.
+AMEVA Single-Device GPU Slicing Tests for amv-train.
 Covers Vocab Slicing, Chunked Dispatch, and Layer Streaming on TinyTransformerLM.
 Component: [TRAIN-GPU-SLICING]
 """
@@ -12,11 +12,11 @@ import json
 import pytest
 from unittest.mock import patch, MagicMock
 
-import termux_train as tt
-from termux_train import Tensor, randn
-from termux_train.nn.transformer import TinyTransformerLM
-from termux_train.runtime.runner import run_session
-from termux_train.cli import main
+import amv_train as tt
+from amv_train import Tensor, randn
+from amv_train.nn.transformer import TinyTransformerLM
+from amv_train.runtime.runner import run_session
+from amv_train.cli import main
 
 
 def test_tiny_transformer_slicing_attributes():
@@ -148,7 +148,7 @@ def test_runner_gpu_slicing_metrics(capsys):
 def test_train_cli_gpu_slicing_args(monkeypatch):
     """Verify CLI accepts --vocab-slice, --chunk-layers, --stream-layers flags."""
     test_args = [
-        "termux-train",
+        "amv-train",
         "train",
         "--model",
         "transformer",
@@ -163,7 +163,7 @@ def test_train_cli_gpu_slicing_args(monkeypatch):
     ]
     monkeypatch.setattr(sys, "argv", test_args)
 
-    with patch("termux_train.cli.cmd_train") as mock_cmd_train:
+    with patch("amv_train.cli.cmd_train") as mock_cmd_train:
         try:
             main()
         except SystemExit as e:

@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-termux-train Comprehensive Architectural Audit Verification Suite
+amv-train Comprehensive Architectural Audit Verification Suite
 ==================================================================
 Tests and verifies all 10 Level A critical compiler/autograd fixes,
 numerical stability invariants, and mobile runtime safeguards.
@@ -12,13 +12,13 @@ import os
 import tempfile
 import pytest
 
-from termux_train.tensor import Tensor, tensor, zeros, ones, randn, no_grad, _unbroadcast_to, _promote_dtype
-from termux_train.nn.layernorm import LayerNorm
-from termux_train.nn.embedding import Embedding
-from termux_train.nn.attention import MultiHeadAttention
-from termux_train.nn.rope import RotaryEmbedding
-from termux_train.nn.loss import cross_entropy_loss, bce_loss, mse_loss
-from termux_train.checkpoint.safetensors import save_safetensors, load_safetensors
+from amv_train.tensor import Tensor, tensor, zeros, ones, randn, no_grad, _unbroadcast_to, _promote_dtype
+from amv_train.nn.layernorm import LayerNorm
+from amv_train.nn.embedding import Embedding
+from amv_train.nn.attention import MultiHeadAttention
+from amv_train.nn.rope import RotaryEmbedding
+from amv_train.nn.loss import cross_entropy_loss, bce_loss, mse_loss
+from amv_train.checkpoint.safetensors import save_safetensors, load_safetensors
 
 
 def test_level_a_01_autograd_no_grad_isolation():
@@ -172,9 +172,9 @@ def test_level_a_09_layernorm_forward_backward_numerical_accuracy():
 
 def test_level_a_10_end_to_end_transformer_lora_training_step():
     """Verify full end-to-end forward, loss, backward, and parameter update."""
-    from termux_train.nn.linear import Linear
-    from termux_train.nn.lora import LoRALinear
-    from termux_train.optim.adamw import AdamW
+    from amv_train.nn.linear import Linear
+    from amv_train.nn.lora import LoRALinear
+    from amv_train.optim.adamw import AdamW
     
     layer = LoRALinear(in_features=8, out_features=8, rank=2, alpha=1.0)
     optimizer = AdamW(layer.parameters(), lr=0.01)

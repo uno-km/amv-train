@@ -7,7 +7,7 @@ if (window.i18nManager) {
   window.i18nManager.registerTranslations({
   "en": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPI (pip)",
       "npmBtn": "npm (Node.js)",
@@ -28,7 +28,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework",
       "quickInstallTitle": "1-Line Quick Installation",
       "quickInstallDesc": "Install the official package directly into your runtime:",
@@ -64,7 +64,7 @@ if (window.i18nManager) {
   },
   "ko": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPI 패키지",
       "npmBtn": "npm 패키지",
@@ -85,7 +85,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "SafeTensors 제로 카피 및 LoRA 파인튜닝 지원 경량 온디바이스 DAG Autograd 딥러닝 프레임워크",
       "quickInstallTitle": "1줄 빠른 설치",
       "quickInstallDesc": "환경에 맞는 공식 패키지를 즉시 설치하세요:",
@@ -121,7 +121,7 @@ if (window.i18nManager) {
   },
   "ja": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPIパッケージ",
       "npmBtn": "npmパッケージ",
@@ -142,7 +142,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework",
       "quickInstallTitle": "1行クイックインストール",
       "quickInstallDesc": "ランタイムに公式パッケージを直接インストールします:",
@@ -164,7 +164,7 @@ if (window.i18nManager) {
   },
   "zh": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPI (pip)",
       "npmBtn": "npm (Node.js)",
@@ -185,7 +185,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework",
       "quickInstallTitle": "一键快速安装",
       "quickInstallDesc": "直接将官方包安装到您的环境中:",
@@ -207,7 +207,7 @@ if (window.i18nManager) {
   },
   "es": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPI (pip)",
       "npmBtn": "npm (Node.js)",
@@ -228,7 +228,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework",
       "quickInstallTitle": "Instalación Rápida en 1 Línea",
       "quickInstallDesc": "Instale el paquete oficial directamente en su entorno:",
@@ -250,7 +250,7 @@ if (window.i18nManager) {
   },
   "de": {
     "common": {
-      "brand": "Termux-Train",
+      "brand": "AMV-Train",
       "releaseTag": "v1.0.0 (Stable Release)",
       "pypiBtn": "PyPI (pip)",
       "npmBtn": "npm (Node.js)",
@@ -271,7 +271,7 @@ if (window.i18nManager) {
       }
     },
     "home": {
-      "title": "Termux-Train",
+      "title": "AMV-Train",
       "subtitle": "Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework",
       "quickInstallTitle": "1-Zeilen-Schnellinstallation",
       "quickInstallDesc": "Installieren Sie das offizielle Paket direkt in Ihre Laufzeitumgebung:",

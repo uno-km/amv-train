@@ -11,12 +11,12 @@ import json
 import tempfile
 import pytest
 
-import termux_train as tt
-from termux_train import Tensor
-from termux_train.data.audio_dataset import AudioTranscriptionDataset, AudioVoiceDataset
-from termux_train.audio.audio_lora import WhisperSTTLoRAModel, TTSSpeakerAdaptationLoRA
-from termux_train.audio.trainer import train_stt_lora, train_tts_lora
-from termux_train.checkpoint.safetensors import load_safetensors
+import amv_train as tt
+from amv_train import Tensor
+from amv_train.data.audio_dataset import AudioTranscriptionDataset, AudioVoiceDataset
+from amv_train.audio.audio_lora import WhisperSTTLoRAModel, TTSSpeakerAdaptationLoRA
+from amv_train.audio.trainer import train_stt_lora, train_tts_lora
+from amv_train.checkpoint.safetensors import load_safetensors
 
 
 @pytest.fixture
@@ -95,7 +95,7 @@ def test_whisper_stt_lora_forward_backward():
     logits = model(mel, txt_ids)
     assert logits.shape == (B, S_text, vocab_size)
 
-    from termux_train.nn.loss import cross_entropy_loss
+    from amv_train.nn.loss import cross_entropy_loss
     loss = cross_entropy_loss(logits, tgt_ids)
     assert float(loss.item()) > 0.0
 
@@ -125,7 +125,7 @@ def test_tts_speaker_adaptation_lora_forward_backward():
     out_mel = model(txt_ids)
     assert out_mel.shape == (B, S, n_mels)
 
-    from termux_train.nn.loss import mse_loss
+    from amv_train.nn.loss import mse_loss
     loss = mse_loss(out_mel, target_mel)
     assert float(loss.item()) > 0.0
 
@@ -177,10 +177,10 @@ def test_train_stt_and_tts_lora_end_to_end(temp_audio_dir):
 
 
 def test_cli_audio_train_args():
-    from termux_train.cli import main
+    from amv_train.cli import main
     import sys
     for subcmd in ("stt-train", "tts-train"):
-        test_args = ["termux-train", subcmd, "--help"]
+        test_args = ["amv-train", subcmd, "--help"]
         with pytest.raises(SystemExit) as exc_info:
             sys.argv = test_args
             main()

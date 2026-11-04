@@ -5,26 +5,26 @@
   <script>if(location.pathname.match(/\/(lib|sdk)\/[^\/]+$/)){location.replace(location.pathname+'/'+location.search+location.hash);}</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Manual & Recipes | termux-train</title>
+    <title>Training Manual & Recipes | amv-train</title>
     <meta name="description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
-    <meta name="keywords" content="termux-train, pypi, on-device training, android deep learning, autograd pure python, lora on device, bionic arm64, snapdragon ai, mobile transformer, rope kv cache, safetensors mobile, ameva foundation">
+    <meta name="keywords" content="amv-train, pypi, on-device training, android deep learning, autograd pure python, lora on device, bionic arm64, snapdragon ai, mobile transformer, rope kv cache, safetensors mobile, ameva foundation">
     <meta name="author" content="AMEVA Foundation &amp; uno-km">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://uno-km.github.io/termux-train/">
+    <link rel="canonical" href="https://uno-km.github.io/amv-train/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="termux-train RSS Feed" href="https://uno-km.github.io/termux-train/rss.xml">
+    <link rel="alternate" type="application/rss+xml" title="amv-train RSS Feed" href="https://uno-km.github.io/amv-train/rss.xml">
 
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Training Manual & Recipes | termux-train">
+    <meta property="og:title" content="Training Manual & Recipes | amv-train">
     <meta property="og:description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://uno-km.github.io/termux-train/">
-    <meta property="og:site_name" content="termux-train (AMEVA Foundation)">
-    <meta property="og:image" content="https://uno-km.github.io/termux-train/favicon.svg">
+    <meta property="og:url" content="https://uno-km.github.io/amv-train/">
+    <meta property="og:site_name" content="amv-train (AMEVA Foundation)">
+    <meta property="og:image" content="https://uno-km.github.io/amv-train/favicon.svg">
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Training Manual & Recipes | termux-train">
+    <meta name="twitter:title" content="Training Manual & Recipes | amv-train">
     <meta name="twitter:description" content="Comprehensive training manual for Tiny Models and Small LLMs on Android Termux">
 
     <!-- Schema.org SoftwareApplication JSON-LD -->
@@ -32,7 +32,7 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "termux-train",
+      "name": "amv-train",
       "author": {
         "@type": "Organization",
         "name": "AMEVA Foundation"
@@ -56,8 +56,8 @@
 <body>
     <header>
         <a href="index.html" class="header-brand">
-            <img src="favicon.svg" alt="termux-train Logo">
-            <h1 data-i18n="common.brand">termux-train</h1>
+            <img src="favicon.svg" alt="amv-train Logo">
+            <h1 data-i18n="common.brand">amv-train</h1>
         </a>
         <div class="header-controls">
             <span class="release-tag" data-i18n="common.releaseTag">v0.1.0 (Native)</span>
@@ -71,9 +71,9 @@
                     <option value="de">🇩🇪 Deutsch</option>
                 </select>
             </div>
-            <a href="https://pypi.org/project/termux-train/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
+            <a href="https://pypi.org/project/amv-train/" target="_blank" class="header-btn" data-i18n="common.pypiBtn">PyPI (pip)</a>
             <a href="https://github.com/sponsors/uno-km" target="_blank" class="header-btn" style="border-color: #ea4aaa; color: #ea4aaa; font-weight: 700;">💖 Sponsor</a>
-      <a href="https://github.com/uno-km/termux-train" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
+      <a href="https://github.com/uno-km/amv-train" target="_blank" class="header-btn primary" data-i18n="common.githubBtn">GitHub</a>
         </div>
     </header>
     <div class="container">
@@ -95,13 +95,13 @@
             </ul>
                         <h3 data-i18n="common.nav.ecosystem">AMEVA Ecosystem</h3>
             <ul>
-                <li><a href="/lib/bitnet/">Termux-BitNet (1.58-bit LLM)</a></li>
+                <li><a href="/lib/bitnet/">AMV-BitNet (1.58-bit LLM)</a></li>
                 <li><a href="/sdk/sentinel/">AMEVA Sentinel (Security SDK)</a></li>
                 <li><a href="/lib/forge/">AMEVA-Forge (WebGPU Autograd)</a></li>
-                <li><a href="/lib/playwright/">Termux-Playwright (Automation)</a></li>
-                <li><a href="/lib/stt/">Termux-STT (Voice STT)</a></li>
-                <li><a href="/lib/diffusion/">Termux-Diffusion (Image AI)</a></li>
-                <li><a href="/lib/train/">Termux-Train (LoRA Engine)</a></li>
+                <li><a href="/lib/playwright/">AMV-Playwright (Automation)</a></li>
+                <li><a href="/lib/stt/">AMV-STT (Voice STT)</a></li>
+                <li><a href="/lib/diffusion/">AMV-Diffusion (Image AI)</a></li>
+                <li><a href="/lib/train/">AMV-Train (LoRA Engine)</a></li>
                 <li><a href="https://ameva-workstation-web-core.vercel.app/" target="_blank">AMEVA Workstation (Web App)</a></li>
             </ul>
 
@@ -118,7 +118,7 @@
             <p class="subtitle" data-i18n="guide.subtitle">Comprehensive engineering guide for training RoPE Transformers, Whisper LoRA, and DocFold models on mobile hardware.</p>
 
             <h3>1. Mobile Hardware Constraints &amp; LMK Defense</h3>
-            <p>Android OS triggers the <strong>Low Memory Killer (LMK)</strong> when free memory falls below 300MB. termux-train avoids this via:</p>
+            <p>Android OS triggers the <strong>Low Memory Killer (LMK)</strong> when free memory falls below 300MB. amv-train avoids this via:</p>
             <ul style="margin-left: 20px; line-height: 1.8;">
                 <li><strong>Zero-Dependency Core</strong>: Pure Python autograd consuming &lt; 30MB base RAM.</li>
                 <li><strong>Streaming MMap Datasets</strong>: Direct page-cache disk streaming without heap bloat.</li>
@@ -126,8 +126,8 @@
             </ul>
 
             <h3 style="margin-top: 32px;">2. Recipe 1: Tiny Transformer Language Model (RoPE + KV Cache)</h3>
-            <pre><code class="language-python">from termux_train import Tensor, nn, optim, set_backend
-from termux_train.tokenization import CharTokenizer
+            <pre><code class="language-python">from amv_train import Tensor, nn, optim, set_backend
+from amv_train.tokenization import CharTokenizer
 
 set_backend("auto")
 tokenizer = CharTokenizer()
@@ -174,9 +174,9 @@ nn.merge_lora_adapters(model)</code></pre>
             🏛️ <strong>Engineered by AMEVA Foundation (아메바 재단)</strong> — Democratizing On-Device AI Sovereignty for Everyone.
         </div>
         <div style="margin-bottom: 8px; font-size: 0.82em; opacity: 0.85;">
-            <strong>Disclaimer:</strong> termux-train is an independent open-source project developed for the Android Termux environment and is not officially affiliated with, endorsed by, or sponsored by the Termux project, PyTorch, or Meta.
+            <strong>Disclaimer:</strong> amv-train is an independent open-source project developed for the Android Termux environment and is not officially affiliated with, endorsed by, or sponsored by the Termux project, PyTorch, or Meta.
         </div>
-        <span data-i18n="common.footerText">&copy; 2026 termux-train Project (uno-km). Released under Apache License 2.0.</span>
+        <span data-i18n="common.footerText">&copy; 2026 amv-train Project (uno-km). Released under Apache License 2.0.</span>
     </footer>
 </body>
 </html>

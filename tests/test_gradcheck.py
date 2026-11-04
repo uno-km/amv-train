@@ -7,8 +7,8 @@ Verify Autograd analytical gradients against numerical finite differences.
 """
 
 import pytest
-from termux_train import Tensor, set_backend, available_backends
-from termux_train.utils import gradcheck
+from amv_train import Tensor, set_backend, available_backends
+from amv_train.utils import gradcheck
 
 @pytest.fixture(params=["python"] + (["numpy"] if "numpy" in available_backends() else []))
 def active_backend(request):

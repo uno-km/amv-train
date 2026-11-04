@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software in your research or mobile systems, please cite it as below."
-title: "termux-train: Unified Multimodal On-Device Deep Learning & Cluster Virtual RAM Pooling Engine"
+title: "amv-train: Unified Multimodal On-Device Deep Learning & Cluster Virtual RAM Pooling Engine"
 version: 2.0.0
 date-released: 2026-10-03
-url: "https://github.com/uno-km/termux-train"
+url: "https://github.com/uno-km/amv-train"
 authors:
   - family-names: "Kim"
     given-names: "Eunho"

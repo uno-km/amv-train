@@ -18,11 +18,11 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, nn, optim, runtime, set_backend, get_backend, available_backends
+from amv_train import Tensor, nn, optim, runtime, set_backend, get_backend, available_backends
 
 def run_mobile_runtime_demo(backend_name: str):
     set_backend(backend_name)
@@ -31,7 +31,7 @@ def run_mobile_runtime_demo(backend_name: str):
     print("=" * 75)
 
     random.seed(42)
-    checkpoint_dir = tempfile.mkdtemp(prefix="termux_train_ckpt_")
+    checkpoint_dir = tempfile.mkdtemp(prefix="amv_train_ckpt_")
 
     try:
         # 1. XOR Dataset

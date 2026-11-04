@@ -4,7 +4,7 @@
 """
 scripts/export_source_code.py
 =============================
-termux-train (AMEVA-Termux) 전체 소스코드 일괄 스냅샷 및 텍스트 추출 스크립트.
+amv-train (AMEVA-Termux) 전체 소스코드 일괄 스냅샷 및 텍스트 추출 스크립트.
 """
 
 import os
@@ -80,7 +80,7 @@ def main():
     header = (
         f"# 프로젝트 디렉터리 구조\n#root ({root.name})\n{generate_tree(root)}\n\n\n"
         f"# PROJECT_METADATA\n"
-        f"Project: termux-train (AMEVA-Termux)\n"
+        f"Project: amv-train (AMEVA-Termux)\n"
         f"Snapshot Date: {now:%Y-%m-%d %H:%M:%S}\n"
         f"Branch: {branch}\n"
         f"Commit: {commit}\n"

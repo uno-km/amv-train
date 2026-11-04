@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 # =======================================================================
-# termux-train: One-Touch Universal Automated Installer
+# amv-train: One-Touch Universal Automated Installer
 # Supported OS: Android Termux (ARM64/x86_64), Linux, macOS
 # Open-Source under Apache License 2.0
 # ======================================================================
@@ -16,7 +16,7 @@ COLOR_RED='\033[0;31m'
 COLOR_RESET='\033[0m'
 
 echo -e "${COLOR_BLUE}================================================================${COLOR_RESET}"
-echo -e "${COLOR_BLUE}    termux-train: Universal One-Touch Installation Engine       ${COLOR_RESET}"
+echo -e "${COLOR_BLUE}    amv-train: Universal One-Touch Installation Engine       ${COLOR_RESET}"
 echo -e "${COLOR_BLUE}================================================================${COLOR_RESET}"
 
 # 1. Environment Detection
@@ -50,7 +50,7 @@ if ! command -v python3 &> /dev/null; then
 fi
 
 # 4. Python Package Installation
-echo -e "\n${COLOR_BLUE}[2/4] Installing Python termux-train Engine & Dependencies...${COLOR_RESET}"
+echo -e "\n${COLOR_BLUE}[2/4] Installing Python amv-train Engine & Dependencies...${COLOR_RESET}"
 $PY_CMD -m pip install setuptools wheel || true
 
 if [ "$IS_TERMUX" = true ]; then
@@ -70,11 +70,11 @@ echo -e "\n${COLOR_BLUE}[4/4] Running Diagnostic Doctor Self-Verification...${CO
 if command -v node &> /dev/null; then
     node bin/cli.js doctor
 else
-    $PY_CMD -m termux_train.cli doctor
+    $PY_CMD -m amv_train.cli doctor
 fi
 
 echo -e "\n${COLOR_GREEN}================================================================${COLOR_RESET}"
-echo -e "${COLOR_GREEN} [+] termux-train successfully installed and ready!             ${COLOR_RESET}"
-echo -e "${COLOR_GREEN}     - Node CLI   : npx termux-train --help                     ${COLOR_RESET}"
-echo -e "${COLOR_GREEN}     - Python CLI : python3 -m termux_train.cli --help          ${COLOR_RESET}"
+echo -e "${COLOR_GREEN} [+] amv-train successfully installed and ready!             ${COLOR_RESET}"
+echo -e "${COLOR_GREEN}     - Node CLI   : npx amv-train --help                     ${COLOR_RESET}"
+echo -e "${COLOR_GREEN}     - Python CLI : python3 -m amv_train.cli --help          ${COLOR_RESET}"
 echo -e "${COLOR_GREEN}================================================================${COLOR_RESET}"

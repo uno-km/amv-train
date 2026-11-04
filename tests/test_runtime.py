@@ -3,7 +3,7 @@
 """
 tests/test_runtime.py
 =====================
-Comprehensive unit tests for termux_train.runtime (Safe Checkpointing & MobileTrainer).
+Comprehensive unit tests for amv_train.runtime (Safe Checkpointing & MobileTrainer).
 Tests:
   - Checkpoint round-trip serialization and deserialization
   - SHA256 integrity check and corruption detection
@@ -23,8 +23,8 @@ import os
 import shutil
 import tempfile
 import pytest
-from termux_train import Tensor, nn, optim, available_backends, set_backend
-from termux_train.runtime import (
+from amv_train import Tensor, nn, optim, available_backends, set_backend
+from amv_train.runtime import (
     save_checkpoint,
     load_checkpoint,
     CheckpointError,
@@ -186,7 +186,7 @@ def test_checkpoint_atomic_load_rollback_on_failure(temp_dir, active_backend):
 
 
 def test_checkpoint_rollback_failure_raises_rollback_error(temp_dir, active_backend):
-    from termux_train.runtime.checkpoint import CheckpointRollbackError
+    from amv_train.runtime.checkpoint import CheckpointRollbackError
     model = nn.Linear(2, 2)
     ckpt_path = os.path.join(temp_dir, "corrupt_rollback.json")
     save_checkpoint(ckpt_path, model=model, epoch=1)

@@ -11,7 +11,7 @@ Unit tests for Big-Tech Autograd Lifecycle & Memory Architecture:
 """
 
 import pytest
-from termux_train import Tensor, no_grad, set_backend, available_backends
+from amv_train import Tensor, no_grad, set_backend, available_backends
 
 
 @pytest.mark.parametrize("backend_name", available_backends())

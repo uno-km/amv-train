@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amv-train"
-version = "2.1.0"
+version = "3.0.0"
 description = "On-device deep learning & LoRA training framework utilizing device resources for Android Termux"
 readme = "README.md"
 authors = [{ name = "AMEVA Team", email = "zhfldk014745@naver.com" }]
@@ -65,10 +65,10 @@ all = [
 ]
 
 [project.scripts]
-amv-train = "termux_train.cli:main"
+amv-train = "amv_train.cli:main"
 
 [project.entry-points."ameva.components"]
-amv-train = "termux_train.adapter:create_adapter"
+amv-train = "amv_train.adapter:create_adapter"
 
 
 [project.urls]
@@ -79,7 +79,7 @@ Issues = "https://github.com/uno-km/amv-train/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["termux_train*"]
+include = ["amv_train*", "termux_train"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"

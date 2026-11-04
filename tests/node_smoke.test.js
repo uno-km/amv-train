@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * Comprehensive Verification Tests for termux-train Node.js SDK & CLI
+ * Comprehensive Verification Tests for amv-train Node.js SDK & CLI
  *
  * Validates:
  * - Real Multi-Batch LoRA fine-tuning with SafeTensors dataset
@@ -34,15 +34,15 @@ const { runDoctor, resolvePythonCmd, invalidatePythonCache } = require('../lib/d
 const { TermuxTrainer } = require('../lib/trainer');
 const errors = require('../lib/errors');
 
-console.log('=== Running Production-Grade termux-train Node.js Verification Tests ===\n');
+console.log('=== Running Production-Grade amv-train Node.js Verification Tests ===\n');
 
 // Helper: generate a SafeTensors dataset via Python script file with try/finally isolation
 function genSafeTensorsDataset(pyCmd, filePath, rows, cols, outCols, outRows = null) {
   const targetRows = outRows !== null ? outRows : rows;
   const scriptPath = path.join(os.tmpdir(), `gen_dataset_${Date.now()}_${Math.random().toString(36).slice(2)}.py`);
   const script = [
-    'import sys, os, termux_train.checkpoint as cp',
-    'from termux_train import randn',
+    'import sys, os, amv_train.checkpoint as cp',
+    'from amv_train import randn',
     `x = randn((${rows}, ${cols}))`,
     `y = randn((${targetRows}, ${outCols}))`,
     `cp.save_safetensors({"inputs": x, "targets": y}, sys.argv[1])`,
@@ -88,7 +88,7 @@ function genSafeTensorsDataset(pyCmd, filePath, rows, cols, outCols, outRows = n
   console.log('3. Testing Doctor Hardware & Capacity Diagnostics...');
   const doc = runDoctor();
   assert.ok(doc);
-  assert.strictEqual(doc.framework, 'termux-train');
+  assert.strictEqual(doc.framework, 'amv-train');
   assert.ok(doc.hardware.cpuCores > 0);
   assert.ok(doc.hardware.totalRamMb > 0);
   assert.ok(doc.hardware.usableFreeRamMb >= 0);
@@ -307,7 +307,7 @@ function genSafeTensorsDataset(pyCmd, filePath, rows, cols, outCols, outRows = n
 
   // 14. Python CLI train Subcommand Parity Test
   console.log('14. Testing Python CLI "train" Subcommand Parity...');
-  const pyCliRes = spawnSync(pyCmd, ['-m', 'termux_train.cli', 'train', '--epochs', '1', '--dim', '16', '--model', 'mlp'], {
+  const pyCliRes = spawnSync(pyCmd, ['-m', 'amv_train.cli', 'train', '--epochs', '1', '--dim', '16', '--model', 'mlp'], {
     stdio: 'pipe',
     encoding: 'utf-8'
   });
@@ -336,7 +336,7 @@ function genSafeTensorsDataset(pyCmd, filePath, rows, cols, outCols, outRows = n
   console.log('   [PASS] RoPE Transformer LM trained successfully.\n');
 
   // 16. Async Benchmark via benchmarker module
-  console.log('16. Testing Async Benchmark (via termux_train.runtime.benchmarker)...');
+  console.log('16. Testing Async Benchmark (via amv_train.runtime.benchmarker)...');
   const bm = await termuxTrain.benchmark({ dim: 64, iters: 5 });
   assert.ok(Number.isFinite(bm.gemmLatencyMs) && bm.gemmLatencyMs >= 0);
   assert.ok(Number.isFinite(bm.autogradStepLatencyMs) && bm.autogradStepLatencyMs >= 0);
@@ -494,7 +494,7 @@ function genSafeTensorsDataset(pyCmd, filePath, rows, cols, outCols, outRows = n
   }
   console.log('   [PASS] Multimodal Node.js SDK exports & CLI subcommands operating with 100% parity.\n');
 
-  console.log('=== All 23 termux-train Production-Grade Verification Tests Passed Successfully! ===');
+  console.log('=== All 23 amv-train Production-Grade Verification Tests Passed Successfully! ===');
 })().catch((e) => {
   console.error('CRITICAL VERIFICATION FAILURE:', e);
   process.exit(1);

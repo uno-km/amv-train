@@ -13,18 +13,18 @@ import socket
 import pytest
 from unittest.mock import patch, MagicMock
 
-import termux_train as tt
-from termux_train import Tensor, randn
-from termux_train.cluster import (
+import amv_train as tt
+from amv_train import Tensor, randn
+from amv_train.cluster import (
     VirtualNodeInfo,
     VirtualRAMPool,
     DEFAULT_GUARD_BAND_MB,
     ClusterConnectionError,
     ClusterConfigurationError,
 )
-from termux_train.cluster_trainer import ClusterWorkerServer, ClusterPipelineSession
-import termux_train.nn as nn
-from termux_train.cli import main
+from amv_train.cluster_trainer import ClusterWorkerServer, ClusterPipelineSession
+import amv_train.nn as nn
+from amv_train.cli import main
 
 
 def test_virtual_node_info_guard_band():
@@ -148,7 +148,7 @@ def test_distributed_pipeline_fail_fast_unreachable():
 def test_cli_cluster_probe_args(monkeypatch):
     """Verify CLI accepts cluster-probe subcommand."""
     test_args = [
-        "termux-train",
+        "amv-train",
         "cluster-probe",
         "--rpc",
         "100.77.47.37:50052,100.83.82.60:50052",
@@ -157,7 +157,7 @@ def test_cli_cluster_probe_args(monkeypatch):
     ]
     monkeypatch.setattr(sys, "argv", test_args)
 
-    with patch("termux_train.cli.cmd_cluster_probe") as mock_probe:
+    with patch("amv_train.cli.cmd_cluster_probe") as mock_probe:
         try:
             main()
         except SystemExit as e:

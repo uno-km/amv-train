@@ -1,7 +1,7 @@
 # Tiny Transformer & CharLM Mathematical Specification
 
 ## 1. Scope and Design Philosophy
-This document specifies the exact numerical, mathematical, and tensor contracts for the **Tiny Transformer & CharLM Engine** in `termux-train`.
+This document specifies the exact numerical, mathematical, and tensor contracts for the **Tiny Transformer & CharLM Engine** in `amv-train`.
 It is designed specifically for constrained mobile runtime environments (Android Termux) with:
 - Zero binary / C++ / Rust dependencies (Pure Python Tier-1, Optional NumPy Tier-2).
 - Strict numerical stability against floating-point overflow and underflow.

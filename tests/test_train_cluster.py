@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 """
-AMEVA Unified Distributed RPC Cluster Orchestration Cold Tests for termux-train.
+AMEVA Unified Distributed RPC Cluster Orchestration Cold Tests for amv-train.
 Strict Protocol: Zero-Silent-Fallback & Fail-Fast Verification.
 Component: [TRAIN-CLUSTER]
 """
@@ -12,18 +12,18 @@ import json
 from unittest.mock import patch, MagicMock
 import pytest
 
-import termux_train as tt
-from termux_train.exceptions import (
+import amv_train as tt
+from amv_train.exceptions import (
     ClusterConnectionError,
     ClusterConfigurationError,
 )
-from termux_train.cluster import (
+from amv_train.cluster import (
     parse_cluster_rpc_spec,
     verify_rpc_cluster_nodes,
     verify_rpc_cluster_health,
 )
-from termux_train.runtime.runner import run_session
-from termux_train.cli import main
+from amv_train.runtime.runner import run_session
+from amv_train.cli import main
 
 
 def test_parse_cluster_rpc_spec_valid():
@@ -112,7 +112,7 @@ def test_train_runner_cluster_spec_and_preflight(capsys):
         "cluster_vram_budget": "4000,4000",
     }
 
-    with patch("termux_train.runtime.runner.verify_rpc_cluster_nodes") as mock_verify:
+    with patch("amv_train.runtime.runner.verify_rpc_cluster_nodes") as mock_verify:
         run_session(cfg)
         assert mock_verify.called
         assert mock_verify.call_args[0][0] == ["100.77.47.37:50052", "100.106.99.81:50052"]
@@ -158,7 +158,7 @@ def test_train_runner_cluster_unreachable_node_fail_fast():
 def test_cli_train_cluster_flags_parsing(monkeypatch):
     """Verify CLI parses cluster arguments and passes to cmd_train."""
     test_args = [
-        "termux-train",
+        "amv-train",
         "train",
         "--model",
         "mlp",
@@ -175,7 +175,7 @@ def test_cli_train_cluster_flags_parsing(monkeypatch):
     ]
     monkeypatch.setattr(sys, "argv", test_args)
 
-    with patch("termux_train.cli.cmd_train") as mock_cmd_train:
+    with patch("amv_train.cli.cmd_train") as mock_cmd_train:
         try:
             main()
         except SystemExit as e:

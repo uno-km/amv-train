@@ -22,8 +22,8 @@ Validates:
 import math
 import copy
 import pytest
-from termux_train import Tensor, nn, optim, available_backends, set_backend
-from termux_train.nn.lora import LoRALinear, adapter_parameters, named_adapter_parameters
+from amv_train import Tensor, nn, optim, available_backends, set_backend
+from amv_train.nn.lora import LoRALinear, adapter_parameters, named_adapter_parameters
 
 
 @pytest.fixture(params=["python"] + (["numpy"] if "numpy" in available_backends() else []))
@@ -336,7 +336,7 @@ def test_lora_adapter_state_dict_schema_and_exclusion(active_backend):
 
     # Exact expected keys
     assert set(state.keys()) == {"format", "version", "in_features", "out_features", "rank", "alpha", "lora_A", "lora_B"}
-    assert state["format"] == "termux-train-lora-adapter"
+    assert state["format"] == "amv-train-lora-adapter"
     assert state["version"] == "1.0"
     assert state["in_features"] == 6
     assert state["out_features"] == 4
@@ -508,7 +508,7 @@ def test_lora_load_atomic_rejections_and_rollback(active_backend):
 
 
 def test_lora_model_level_adapter_state_dict_and_atomic_loading(active_backend):
-    from termux_train.nn.lora import adapter_state_dict, load_adapter_state_dict
+    from amv_train.nn.lora import adapter_state_dict, load_adapter_state_dict
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -522,7 +522,7 @@ def test_lora_model_level_adapter_state_dict_and_atomic_loading(active_backend):
     model[3].lora_B._data = model[3].lora_B.backend.from_data([[1.0, 2.0], [3.0, 4.0]])
 
     state = adapter_state_dict(model)
-    assert state["format"] == "termux-train-lora-model-adapter"
+    assert state["format"] == "amv-train-lora-model-adapter"
     assert "0" in state["adapters"]
     assert "3" in state["adapters"]
 
@@ -540,7 +540,7 @@ def test_lora_model_level_adapter_state_dict_and_atomic_loading(active_backend):
 
 
 def test_lora_model_level_atomic_rollback_on_partial_failure(active_backend):
-    from termux_train.nn.lora import adapter_state_dict, load_adapter_state_dict
+    from amv_train.nn.lora import adapter_state_dict, load_adapter_state_dict
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -641,7 +641,7 @@ def test_lora_recursive_model_commit_failure_injection_rollback(active_backend):
     Verifies that in a multi-layer model, if layer 0 commit succeeds but layer 2 commit fails,
     layer 0 is completely rolled back to its pre-call snapshot.
     """
-    from termux_train.nn.lora import adapter_state_dict, load_adapter_state_dict
+    from amv_train.nn.lora import adapter_state_dict, load_adapter_state_dict
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -728,7 +728,7 @@ def test_lora_metadata_bool_and_type_rejections(active_backend):
 
 
 def test_lora_container_schema_and_key_type_rejections(active_backend):
-    from termux_train.nn.lora import adapter_state_dict, load_adapter_state_dict
+    from amv_train.nn.lora import adapter_state_dict, load_adapter_state_dict
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -738,7 +738,7 @@ def test_lora_container_schema_and_key_type_rejections(active_backend):
     # 1. adapters is list, None, string, int
     for bad_adapters in [[], None, "bad", 123]:
         bad_state = {
-            "format": "termux-train-lora-model-adapter",
+            "format": "amv-train-lora-model-adapter",
             "version": "1.0",
             "adapters": bad_adapters,
         }
@@ -747,7 +747,7 @@ def test_lora_container_schema_and_key_type_rejections(active_backend):
 
     # 2. Non-string top-level key
     bad_state = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "1.0",
         "adapters": {},
         123: "val",
@@ -757,7 +757,7 @@ def test_lora_container_schema_and_key_type_rejections(active_backend):
 
     # 3. Non-string adapter path key
     bad_state = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "1.0",
         "adapters": {123: {}},
     }
@@ -785,7 +785,7 @@ def test_lora_strict_false_with_malformed_present_field_raises(active_backend):
 
 
 def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
-    from termux_train.nn.lora import load_adapter_state_dict
+    from amv_train.nn.lora import load_adapter_state_dict
 
     layer = nn.LoRALinear(in_features=4, out_features=2, rank=2, alpha=2.0)
     orig_a = copy.deepcopy(layer.lora_A.tolist())
@@ -797,7 +797,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
     # 1. Outer version mismatch (e.g. 999.0)
     container_bad_ver = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "999.0",
         "adapters": {"0": valid_layer_state},
     }
@@ -807,7 +807,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
     # 2. Outer version missing in strict=True
     container_missing_ver = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "adapters": {"0": valid_layer_state},
     }
     with pytest.raises(ValueError, match="Missing model adapter keys"):
@@ -816,7 +816,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
     # 3. Outer unexpected key in strict=True
     container_unexpected = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "1.0",
         "adapters": {"0": valid_layer_state},
         "extra_key": 123,
@@ -827,7 +827,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
     # 4. Adapters entry is not a dict
     container_bad_entry = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "1.0",
         "adapters": {"0": "not_a_dict"},
     }
@@ -837,7 +837,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
     # 5. Adapters has count != 1 for single LoRALinear
     container_multi = {
-        "format": "termux-train-lora-model-adapter",
+        "format": "amv-train-lora-model-adapter",
         "version": "1.0",
         "adapters": {"0": valid_layer_state, "1": valid_layer_state},
     }
@@ -851,7 +851,7 @@ def test_single_layer_rejects_model_container_schema_mismatch(active_backend):
 
 
 def test_container_model_rejects_outer_schema_mismatch(active_backend):
-    from termux_train.nn.lora import adapter_state_dict, load_adapter_state_dict
+    from amv_train.nn.lora import adapter_state_dict, load_adapter_state_dict
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -1170,7 +1170,7 @@ def test_lora_unmerge_commit_failure_injection_rollback(active_backend):
 
 
 def test_lora_recursive_module_merge_and_unmerge(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2, alpha=2.0),
@@ -1208,7 +1208,7 @@ def test_lora_recursive_module_merge_and_unmerge(active_backend):
 
 
 def test_lora_recursive_shared_module_deduplication(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
 
     shared_lora = nn.LoRALinear(4, 4, rank=2, alpha=2.0)
     model = nn.Sequential(shared_lora, nn.Tanh(), shared_lora)
@@ -1225,7 +1225,7 @@ def test_lora_recursive_shared_module_deduplication(active_backend):
 
 
 def test_lora_recursive_mixed_lifecycle_rejections(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2),
@@ -1254,7 +1254,7 @@ def test_lora_recursive_mixed_lifecycle_rejections(active_backend):
 
 
 def test_lora_recursive_merge_commit_failure_injection_rollback(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters
 
     model = nn.Sequential(
         nn.LoRALinear(4, 6, rank=2),
@@ -1299,7 +1299,7 @@ def test_lora_recursive_merge_commit_failure_injection_rollback(active_backend):
 
 
 def test_lora_empty_module_merge_unmerge_noop(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters, unmerge_lora_adapters
 
     plain_model = nn.Sequential(
         nn.Linear(4, 8),
@@ -1312,7 +1312,7 @@ def test_lora_empty_module_merge_unmerge_noop(active_backend):
 
 
 def test_lora_unmerged_with_stale_snapshot_single_and_recursive_rejections(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters
 
     # 1. Single layer
     layer = nn.LoRALinear(4, 2, rank=2)
@@ -1345,7 +1345,7 @@ def test_lora_unmerged_with_stale_snapshot_single_and_recursive_rejections(activ
 
 
 def test_lora_unmerge_snapshot_shape_mismatch_rejections(active_backend):
-    from termux_train.nn.lora import unmerge_lora_adapters
+    from amv_train.nn.lora import unmerge_lora_adapters
 
     # 1. Single layer
     layer = nn.LoRALinear(4, 2, rank=2)
@@ -1403,7 +1403,7 @@ def test_lora_merge_delta_and_merged_weight_shape_mismatch_rejections(active_bac
 
 
 def test_lora_merge_scaling_runtime_validation_rejections(active_backend):
-    from termux_train.nn.lora import merge_lora_adapters
+    from amv_train.nn.lora import merge_lora_adapters
 
     layer = nn.LoRALinear(4, 2, rank=2)
     orig_base = copy.deepcopy(layer.base.weight.tolist())

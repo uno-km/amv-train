@@ -19,7 +19,7 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 LIBRARIES_TO_CHECK = [
     {
@@ -34,7 +34,7 @@ LIBRARIES_TO_CHECK = [
         "role": "Scientific computing & special math functions",
         "essential_for_mvp": False,
         "termux_status": "⚠️ pkg install python-scipy",
-        "termux_notes": "Heavy Fortran/BLAS build. Optional, not required for termux-train."
+        "termux_notes": "Heavy Fortran/BLAS build. Optional, not required for amv-train."
     },
     {
         "name": "pytest",
@@ -48,35 +48,35 @@ LIBRARIES_TO_CHECK = [
         "role": "Hugging Face Rust-based BPE/WordPiece Tokenizer",
         "essential_for_mvp": False,
         "termux_status": "❌ Requires Rust/Cargo on Termux (Heavy build)",
-        "termux_notes": "Replaced by termux-train built-in pure Python lightweight tokenizer."
+        "termux_notes": "Replaced by amv-train built-in pure Python lightweight tokenizer."
     },
     {
         "name": "sentencepiece",
         "role": "C++ based Tokenizer backend",
         "essential_for_mvp": False,
         "termux_status": "❌ Requires cmake/clang build",
-        "termux_notes": "Replaced by termux-train built-in pure Python lightweight tokenizer."
+        "termux_notes": "Replaced by amv-train built-in pure Python lightweight tokenizer."
     },
     {
         "name": "transformers",
         "role": "Hugging Face model architecture loading",
         "essential_for_mvp": False,
         "termux_status": "⚠️ pip install transformers --no-deps",
-        "termux_notes": "Optional. termux-train provides native tiny-transformer."
+        "termux_notes": "Optional. amv-train provides native tiny-transformer."
     },
     {
         "name": "peft",
         "role": "Hugging Face Parameter-Efficient Fine-Tuning",
         "essential_for_mvp": False,
         "termux_status": "⚠️ pip install peft --no-deps",
-        "termux_notes": "Optional. termux-train provides native LoRALinear."
+        "termux_notes": "Optional. amv-train provides native LoRALinear."
     },
     {
         "name": "torch",
         "role": "Reference PyTorch (Desktop/Server Reference Only)",
         "essential_for_mvp": False,
         "termux_status": "❌ 공식 배포 중단 (Zero-PyTorch Core)",
-        "termux_notes": "termux-train operates with 100% Zero-PyTorch Core dependency."
+        "termux_notes": "amv-train operates with 100% Zero-PyTorch Core dependency."
     }
 ]
 
@@ -120,8 +120,8 @@ def generate_report(results):
         
     md = f"""# 📦 Multi-Environment Library Installability Matrix
 
-> **Project**: `termux-train` (AMEVA-Termux)
-> **Core Principle**: **Zero Mandatory Heavy Binary Dependencies for termux-train MVP**
+> **Project**: `amv-train` (AMEVA-Termux)
+> **Core Principle**: **Zero Mandatory Heavy Binary Dependencies for amv-train MVP**
 
 ---
 
@@ -146,12 +146,12 @@ def generate_report(results):
 ## 🎯 Architecture Decision on Dependencies (ADR-001)
 
 1. **`torch` 의존성 완전 제거 (100% Zero-PyTorch Core)**:
-   - Host PC에 설치된 PyTorch(예: CUDA 11.8)는 순수 **알고리즘 비교 검증 레퍼런스용**이며, `termux-train` 런타임은 PyTorch에 일절 의존하지 않습니다.
+   - Host PC에 설치된 PyTorch(예: CUDA 11.8)는 순수 **알고리즘 비교 검증 레퍼런스용**이며, `amv-train` 런타임은 PyTorch에 일절 의존하지 않습니다.
 2. **`numpy` Pluggable 가속 (Tier-2 Acceleration)**:
    - Termux에서는 `pkg install python-numpy`로 사전 빌드된 바이너리를 설치하여 즉시 C-level 가속을 활성화합니다.
    - NumPy가 없는 환경에서는 Pure-Python Fallback으로 100% 동일하게 동작합니다.
 3. **독립 내장 모듈 (Self-Contained Modules)**:
-   - 무거운 Rust 빌드가 필요한 `tokenizers` 대신, `termux-train` 내장 초경량 **Char/Word-level Tokenizer**를 기본 제공합니다.
+   - 무거운 Rust 빌드가 필요한 `tokenizers` 대신, `amv-train` 내장 초경량 **Char/Word-level Tokenizer**를 기본 제공합니다.
 """
 
     with open(report_path, "w", encoding="utf-8") as f:

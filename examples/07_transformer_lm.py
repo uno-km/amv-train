@@ -20,13 +20,13 @@ sys.stdout.reconfigure(encoding='utf-8')
 # Ensure project root is in python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, nn, optim, set_backend, available_backends
-from termux_train.tokenization import CharTokenizer
+from amv_train import Tensor, nn, optim, set_backend, available_backends
+from amv_train.tokenization import CharTokenizer
 
 
 def main():
     print("=" * 70)
-    print("  🚀 [termux-train] Character-Level Transformer LM Demo (Mobile-First)")
+    print("  🚀 [amv-train] Character-Level Transformer LM Demo (Mobile-First)")
     print("=" * 70)
 
     # 1. Select fast backend if available
@@ -143,7 +143,7 @@ def main():
     print(f"[*] Generated: '{generated_text}'\n")
 
     print("======================================================================")
-    print("  ✅ [termux-train] Demo 07 Completed Successfully!")
+    print("  ✅ [amv-train] Demo 07 Completed Successfully!")
     print("======================================================================")
 
 

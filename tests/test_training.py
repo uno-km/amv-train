@@ -3,14 +3,14 @@
 """
 tests/test_training.py
 ======================
-Integration and convergence test suite for neural network training in termux-train.
+Integration and convergence test suite for neural network training in amv-train.
 Validates end-to-end forward-backward-optimizer step convergence on XOR non-linear benchmark.
 """
 
 import math
 import random
 import pytest
-from termux_train import Tensor, nn, optim, available_backends, set_backend
+from amv_train import Tensor, nn, optim, available_backends, set_backend
 
 @pytest.fixture(params=["python"] + (["numpy"] if "numpy" in available_backends() else []))
 def active_backend(request):

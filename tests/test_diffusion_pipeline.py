@@ -14,14 +14,14 @@ import json
 import pytest
 from unittest.mock import patch, MagicMock
 
-import termux_train as tt
-from termux_train import Tensor, randn
-from termux_train.diffusion.scheduler import DDPMScheduler, get_timestep_embedding
-from termux_train.diffusion.unet_lora import CrossAttentionLoRA, DiffusionUNetLoRA
-from termux_train.data.image_dataset import ImageFolderDataset, create_mock_diffusion_dataset
-from termux_train.diffusion.trainer import train_diffusion_lora
-from termux_train.checkpoint.safetensors import load_safetensors
-from termux_train.cli import main
+import amv_train as tt
+from amv_train import Tensor, randn
+from amv_train.diffusion.scheduler import DDPMScheduler, get_timestep_embedding
+from amv_train.diffusion.unet_lora import CrossAttentionLoRA, DiffusionUNetLoRA
+from amv_train.data.image_dataset import ImageFolderDataset, create_mock_diffusion_dataset
+from amv_train.diffusion.trainer import train_diffusion_lora
+from amv_train.checkpoint.safetensors import load_safetensors
+from amv_train.cli import main
 
 
 def test_ddpm_scheduler_and_timestep_embeddings():
@@ -133,7 +133,7 @@ def test_train_diffusion_lora_end_to_end():
 def test_cli_diffusion_train_args(monkeypatch):
     """Verify CLI accepts diffusion-train subcommand."""
     test_args = [
-        "termux-train",
+        "amv-train",
         "diffusion-train",
         "--image-dir",
         "./samples/images",
@@ -148,7 +148,7 @@ def test_cli_diffusion_train_args(monkeypatch):
     ]
     monkeypatch.setattr(sys, "argv", test_args)
 
-    with patch("termux_train.cli.cmd_diffusion_train") as mock_diff_train:
+    with patch("amv_train.cli.cmd_diffusion_train") as mock_diff_train:
         try:
             main()
         except SystemExit as e:

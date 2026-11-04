@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * termux-train: Native On-Device Deep Learning & LoRA Training Framework
+ * amv-train: Native On-Device Deep Learning & LoRA Training Framework
  * Dual-Engine (Python & Node.js/TypeScript) Native Module for Android Termux & ARM64.
  * Open-Source under Apache License 2.0.
  */

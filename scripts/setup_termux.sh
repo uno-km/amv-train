@@ -2,13 +2,13 @@
 # Copyright (c) 2026 Uno Kim / AMEVA Foundation. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0 OR Commercial-License
 # ==============================================================================
-# termux-train (AMEVA-Termux) - Android Termux Native Environment Setup Script
+# amv-train (AMEVA-Termux) - Android Termux Native Environment Setup Script
 # ==============================================================================
 
 set -e
 
 echo "========================================================"
-echo "🚀 [termux-train] Initializing Android Termux Environment"
+echo "🚀 [amv-train] Initializing Android Termux Environment"
 echo "========================================================"
 
 # 1. Update Termux Package Repositories

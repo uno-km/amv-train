@@ -5,13 +5,13 @@ import json
 from unittest.mock import patch, MagicMock
 import pytest
 
-from termux_train.cli import main
-from termux_train.runtime.runner import run_session
+from amv_train.cli import main
+from amv_train.runtime.runner import run_session
 
 
 def test_train_cli_rpc_arg_parsing(monkeypatch):
     test_args = [
-        "termux-train",
+        "amv-train",
         "train",
         "--model",
         "mlp",
@@ -24,7 +24,7 @@ def test_train_cli_rpc_arg_parsing(monkeypatch):
     ]
     monkeypatch.setattr(sys, "argv", test_args)
 
-    with patch("termux_train.cli.cmd_train") as mock_cmd_train:
+    with patch("amv_train.cli.cmd_train") as mock_cmd_train:
         # Prevent actual execution but verify arg parsing
         try:
             main()
@@ -48,7 +48,7 @@ def test_train_runner_rpc_session_metrics(capsys):
         "tensorSplit": "60,40",
     }
 
-    with patch("termux_train.runtime.runner.verify_rpc_cluster_nodes"):
+    with patch("amv_train.runtime.runner.verify_rpc_cluster_nodes"):
         run_session(cfg)
 
     captured = capsys.readouterr()

@@ -17,7 +17,7 @@ Comprehensive test suite validating P0 & P1 Autograd Correctness & Integrity:
 
 import math
 import pytest
-from termux_train import Tensor, nn, optim, no_grad, set_backend, available_backends
+from amv_train import Tensor, nn, optim, no_grad, set_backend, available_backends
 
 
 # =============================================================================

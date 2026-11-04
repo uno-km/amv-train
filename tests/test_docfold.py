@@ -12,7 +12,7 @@ Test Suite for DocFold Dataset Pipeline:
 import os
 import tempfile
 import pytest
-from termux_train.data import DocFoldRecord, DocFoldDataset, DOC_START_TOKEN, HEADER_START_TOKEN, VALUE_START_TOKEN, DOC_END_TOKEN
+from amv_train.data import DocFoldRecord, DocFoldDataset, DOC_START_TOKEN, HEADER_START_TOKEN, VALUE_START_TOKEN, DOC_END_TOKEN
 
 
 def test_docfold_record_serialization():

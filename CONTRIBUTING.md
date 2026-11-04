@@ -1,6 +1,6 @@
-# Contributing to termux-train
+# Contributing to amv-train
 
-Thank you for your interest in contributing to `termux-train` (AMEVA-Termux)!
+Thank you for your interest in contributing to `amv-train` (AMEVA-Termux)!
 
 ## Core Architectural Principles
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to `termux-train` (AMEVA-Termux)!
 
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/uno-km/termux-train.git
-   cd termux-train
+   git clone https://github.com/uno-km/amv-train.git
+   cd amv-train
    ```
 
 2. Install development dependencies:

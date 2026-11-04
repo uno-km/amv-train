@@ -7,15 +7,15 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, set_backend, get_backend, available_backends
+from amv_train import Tensor, set_backend, get_backend, available_backends
 
 def main():
     print("=" * 75)
-    print("⚡ termux-train (AMEVA-Termux) - Sprint 3.9: 1D~3D Complete Matmul Suite")
+    print("⚡ amv-train (AMEVA-Termux) - Sprint 3.9: 1D~3D Complete Matmul Suite")
     print("=" * 75)
 
     for backend_name in ["python"] + (["numpy"] if "numpy" in available_backends() else []):

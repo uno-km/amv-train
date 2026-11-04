@@ -8,11 +8,11 @@ Verify official package import contract and ensure legacy aliases are completely
 
 import importlib
 import importlib.util
-import termux_train
+import amv_train
 
 def test_official_package_import():
-    module = importlib.import_module("termux_train")
-    assert module is termux_train
+    module = importlib.import_module("amv_train")
+    assert module is amv_train
     assert hasattr(module, "Tensor")
     assert hasattr(module, "nn")
     assert hasattr(module, "__version__")

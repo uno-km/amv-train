@@ -1,4 +1,4 @@
-name: termux-train Multi-Platform CI
+name: amv-train Multi-Platform CI
 
 on:
   push:
@@ -41,8 +41,8 @@ jobs:
 
       - name: Run CLI Environment Diagnostics
         run: |
-          python -m termux_train.cli info
-          python -m termux_train.cli check
+          python -m amv_train.cli info
+          python -m amv_train.cli check
 
       - name: Run 0-Point Baseline Granular Audit Scoring
         run: |

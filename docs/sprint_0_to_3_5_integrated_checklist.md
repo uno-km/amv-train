@@ -1,6 +1,6 @@
 # Sprints 0 – 3.5 Integrated Verification Checklist
 
-> **Repository:** `termux-train`  
+> **Repository:** `amv-train`  
 > **Focus:** Autograd Engine, Layer Primitives, Optimizers, and Memory Boundaries
 
 ---

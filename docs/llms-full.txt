@@ -1,4 +1,4 @@
-# Termux-Train Full Technical Specification (v1.0.0)
+# AMV-Train Full Technical Specification (v1.0.0)
 Official Documentation & Deep Architecture Reference for Autonomous AI Agents.
 
 ## 1. System Overview
@@ -6,9 +6,9 @@ Ultra-Lightweight On-Device Tensor & DAG Autograd Deep Learning Framework
 Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy serialization and memory-mapped LoRA backpropagation on ARM64.
 
 ## 2. Package & Installation
-- PyPI: termux-train
-- Command: pip install termux-train
-- Repository: https://github.com/uno-km/termux-train
+- PyPI: amv-train
+- Command: pip install amv-train
+- Repository: https://github.com/uno-km/amv-train
 
 ## 3. Core Capabilities
 - **Zero-Copy SafeTensors Serialization**: Loads and saves model checkpoints with zero memory duplication via mmap.
@@ -17,7 +17,7 @@ Implements a pure C++/Python dynamic computation DAG with SafeTensors zero-copy 
 
 ## 4. Canonical Implementation
 ```python
-import termux_train as tt
+import amv_train as tt
 
 # 1. Define model with LoRA layers
 model = tt.nn.TransformerLoRA(vocab_size=32000, dim=512, lora_rank=8)

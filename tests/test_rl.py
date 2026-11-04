@@ -9,11 +9,11 @@ Verifies DPO loss, GRPO group advantage normalization, PPO surrogate, and rule-b
 
 import math
 import pytest
-from termux_train import Tensor, randn
-from termux_train.rl.reward import xml_format_reward, accuracy_reward, length_penalty_reward, extract_answer_content
-from termux_train.rl.dpo import DPOLoss
-from termux_train.rl.grpo import GRPOLoss
-from termux_train.rl.ppo import PPOLoss
+from amv_train import Tensor, randn
+from amv_train.rl.reward import xml_format_reward, accuracy_reward, length_penalty_reward, extract_answer_content
+from amv_train.rl.dpo import DPOLoss
+from amv_train.rl.grpo import GRPOLoss
+from amv_train.rl.ppo import PPOLoss
 
 
 def test_reward_verifiers():

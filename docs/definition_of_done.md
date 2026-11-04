@@ -1,6 +1,6 @@
 # Definition of Done (DoD) & Release Readiness Checklist
 
-> **Framework:** `termux-train`  
+> **Framework:** `amv-train`  
 > **Baseline:** Production Grade Edge Training Verification
 
 ---

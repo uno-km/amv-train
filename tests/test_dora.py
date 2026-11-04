@@ -9,11 +9,11 @@ Verifies initialization, gradient flow, numerical stability, and merge/unmerge t
 
 import math
 import pytest
-from termux_train import Tensor, randn
-from termux_train.nn.linear import Linear
-from termux_train.nn.dora import DoRALinear
-from termux_train.nn.loss import MSELoss
-from termux_train.optim.sgd import SGD
+from amv_train import Tensor, randn
+from amv_train.nn.linear import Linear
+from amv_train.nn.dora import DoRALinear
+from amv_train.nn.loss import MSELoss
+from amv_train.optim.sgd import SGD
 
 
 def test_dora_initialization():

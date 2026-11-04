@@ -24,7 +24,7 @@ Training neural networks on smartphones (Android Termux) differs fundamentally f
 - **Thermal Dissipation**: Mobile SoCs (Qualcomm Snapdragon, Samsung Exynos, MediaTek Dimensity) throttle CPU frequencies when core temperatures rise.
 - **Single-Precision / INT8 Efficiency**: Vectorized CPU compute (ARM NEON SIMD) excels at contiguous memory access and lightweight matrix multiplications.
 
-`termux-train` is specifically engineered to overcome these challenges through **0-dependency core autograd**, **streaming `mmap` datasets**, **HuggingFace-compatible `.safetensors` binary zero-copy serialization**, and **parameter-efficient low-rank adaptation (LoRA)**.
+`amv-train` is specifically engineered to overcome these challenges through **0-dependency core autograd**, **streaming `mmap` datasets**, **HuggingFace-compatible `.safetensors` binary zero-copy serialization**, and **parameter-efficient low-rank adaptation (LoRA)**.
 
 ---
 
@@ -58,8 +58,8 @@ Training neural networks on smartphones (Android Termux) differs fundamentally f
 This recipe trains a Decoder-only autoregressive language model with **Rotary Position Embedding (RoPE)** and generates text with **incremental KV caching**.
 
 ```python
-from termux_train import Tensor, nn, optim, set_backend
-from termux_train.tokenization import CharTokenizer
+from amv_train import Tensor, nn, optim, set_backend
+from amv_train.tokenization import CharTokenizer
 
 # 1. Enable Hardware Acceleration
 set_backend("auto")
@@ -123,8 +123,8 @@ print("Generated Text:", tokenizer.decode(generated_ids))
 This recipe demonstrates fine-tuning a pre-trained Speech Encoder-Decoder with **LoRA low-rank adapters**, freezing $96\%$ of base parameters and saving adapter weights in $<30\text{KB}$.
 
 ```python
-from termux_train import Tensor, nn, optim, checkpoint
-from termux_train.tokenization import WordTokenizer
+from amv_train import Tensor, nn, optim, checkpoint
+from amv_train.tokenization import WordTokenizer
 
 # 1. Define Tiny Whisper Architecture
 class TinyWhisper(nn.Module):
@@ -175,8 +175,8 @@ nn.merge_lora_adapters(model)  # Zero-overhead inference merge
 For processing structured JSON, forms, and key-value document logs on mobile without heavy cloud dependencies:
 
 ```python
-from termux_train import Tensor, nn, optim
-from termux_train.tokenization import WordTokenizer
+from amv_train import Tensor, nn, optim
+from amv_train.tokenization import WordTokenizer
 
 # Tokenize structured document lines
 corpus = [
@@ -204,14 +204,14 @@ model = nn.TinyTransformerLM(
 ### A. Zero-Copy SafeTensors Checkpointing
 Eliminates Python object pickling overhead and allows instant weight mapping:
 ```python
-from termux_train import checkpoint
+from amv_train import checkpoint
 checkpoint.save_safetensors({"weights": model.state_dict()}, "model.safetensors")
 ```
 
 ### B. MMap Streaming Dataset
 Reads token chunks directly from disk via kernel page cache without consuming heap RAM:
 ```python
-from termux_train.data import MMapTokenDataset
+from amv_train.data import MMapTokenDataset
 dataset = MMapTokenDataset.create_from_tokens(tokens=token_list, filepath="dataset.bin", seq_len=64)
 ```
 

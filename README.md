@@ -24,7 +24,7 @@
 
 ## Executive Summary & Architecture Overview
 
-**Termux-Train v2.0.0** is an industrial-grade, zero-dependency deep learning framework engineered specifically for constrained ARM64 Bionic environments (Android Termux, mobile Linux, embedded edge devices). By combining a C-vectorized Directed Acyclic Graph (DAG) Autograd runtime with mobile hardware acceleration (Vulkan Compute, OpenCL, ARM64 NEON), Termux-Train enables full backward gradient propagation, parameter-efficient fine-tuning (LoRA / DoRA), and reinforcement learning directly on mobile devices.
+**AMV-Train v2.0.0** is an industrial-grade, zero-dependency deep learning framework engineered specifically for constrained ARM64 Bionic environments (Android Termux, mobile Linux, embedded edge devices). By combining a C-vectorized Directed Acyclic Graph (DAG) Autograd runtime with mobile hardware acceleration (Vulkan Compute, OpenCL, ARM64 NEON), AMV-Train enables full backward gradient propagation, parameter-efficient fine-tuning (LoRA / DoRA), and reinforcement learning directly on mobile devices.
 
 ```
 +---------------------------------------------------------------------------------------------------+
@@ -50,17 +50,17 @@
                                                   v
 +---------------------------------------------------------------------------------------------------+
 |                             Target-Aware Runtime Export & Compatibility                           |
-|    ComfyUI / Diffusers   |   llama.cpp / GGUF   |   termux-vision   |   termux-stt   |   BitNet  |
+|    ComfyUI / Diffusers   |   llama.cpp / GGUF   |   amv-vision   |   amv-stt   |   BitNet  |
 +---------------------------------------------------------------------------------------------------+
 ```
 
 ### Core Architectural Pillars
 
-1. **Zero External Heavy Dependencies**: Executes autonomously without PyTorch, LibTorch, CMake, or heavy BLAS runtimes. Pure Python DAG autograd paired with optional C-accelerator ABI (`libtermux_train_accel.so`) or Vulkan compute shaders.
+1. **Zero External Heavy Dependencies**: Executes autonomously without PyTorch, LibTorch, CMake, or heavy BLAS runtimes. Pure Python DAG autograd paired with optional C-accelerator ABI (`libamv_train_accel.so`) or Vulkan compute shaders.
 2. **6-Modality Target-Aware Adapters**: Generates standard SafeTensors weights and companion `_config.json` manifests natively recognized by major desktop and mobile inference runtimes without conversion tooling.
 3. **Single-Device GPU Slicing**: Bypasses mobile Unified Memory Architecture (UMA) spikes and watchdog timeouts on ARM Mali and Qualcomm Adreno GPUs through granular vocabulary chunking and layer streaming.
 4. **44GB Disaggregated Cluster Virtual RAM Pooling**: Binds physical memory across heterogeneous mobile nodes (e.g., Galaxy S25, S21, S20, A53, A35) into an aggregated pipeline training session protected by a 300MB memory Guard-Band against the Android Low Memory Killer (LMK).
-5. **100% Dual-Engine Parity**: Complete feature and interface symmetry across Python CLI (`amv-train`), Node.js Global CLI (`amv-train`), Python Library (`import termux_train`), and Node.js SDK (`import { ... } from 'amv-train'`).
+5. **100% Dual-Engine Parity**: Complete feature and interface symmetry across Python CLI (`amv-train`), Node.js Global CLI (`amv-train`), Python Library (`import amv_train`), and Node.js SDK (`import { ... } from 'amv-train'`).
 
 ---
 
@@ -104,7 +104,7 @@ amv-train diffusion-train \
 ```
 
 ### 2. Vision Multimodal VLM LoRA Training (`vision-train`)
-Trains multimodal projection adapters and visual cross-attention layers. Operates on image-text pairs formatted in LLaVA or Qwen2-VL visual question answering schemas. Directly bridges into the `termux-vision` mobile inference runtime.
+Trains multimodal projection adapters and visual cross-attention layers. Operates on image-text pairs formatted in LLaVA or Qwen2-VL visual question answering schemas. Directly bridges into the `amv-vision` mobile inference runtime.
 
 ```bash
 amv-train vision-train \
@@ -119,7 +119,7 @@ amv-train vision-train \
 ```
 
 ### 3. Speech-to-Text Whisper LoRA Training (`stt-train`)
-Performs acoustic adaptation on Whisper encoder-decoder attention blocks. Features automated Mel filterbank spectrogram extraction and persistent caching. Natively consumable by `termux-stt`.
+Performs acoustic adaptation on Whisper encoder-decoder attention blocks. Features automated Mel filterbank spectrogram extraction and persistent caching. Natively consumable by `amv-stt`.
 
 ```bash
 amv-train stt-train \
@@ -133,7 +133,7 @@ amv-train stt-train \
 ```
 
 ### 4. Text-to-Speech Style Adaptation LoRA Training (`tts-train`)
-Fine-tunes speaker embedding and acoustic style parameters for neural speech synthesis. Generates low-rank voice profile adapters directly compatible with `termux-tts`.
+Fine-tunes speaker embedding and acoustic style parameters for neural speech synthesis. Generates low-rank voice profile adapters directly compatible with `amv-tts`.
 
 ```bash
 amv-train tts-train \
@@ -165,7 +165,7 @@ amv-train train \
 ```
 
 ### 6. BitNet 1.58-bit Ternary Quantization-Aware Training
-Applies dynamic activation scaling and ternary weight quantization $\{-1, 0, +1\}$ during forward and backward passes. Directly exports quantized kernels compatible with `bitnet.cpp` and `termux-bitnet`.
+Applies dynamic activation scaling and ternary weight quantization $\{-1, 0, +1\}$ during forward and backward passes. Directly exports quantized kernels compatible with `bitnet.cpp` and `amv-bitnet`.
 
 ```bash
 amv-train train \
@@ -242,7 +242,7 @@ To neutralize these constraints:
 > npm install -g @ameva/cluster amv-train
 > ```
 
-When training deep learning models that exceed physical mobile device memory (e.g. 7B+ parameter models, high-resolution diffusion unets, or multimodal projectors), Termux-Train binds heterogeneous smartphone clusters into a unified virtual memory pool. Idle mobile devices contribute unallocated LPDDR RAM via lightweight worker daemons managed by AMEVA Cluster.
+When training deep learning models that exceed physical mobile device memory (e.g. 7B+ parameter models, high-resolution diffusion unets, or multimodal projectors), AMV-Train binds heterogeneous smartphone clusters into a unified virtual memory pool. Idle mobile devices contribute unallocated LPDDR RAM via lightweight worker daemons managed by AMEVA Cluster.
 
 ```
 +-------------------------------------------------------------------------+
@@ -322,7 +322,7 @@ When passing sensitive weights and intermediate activations across untrusted Wi-
 
 ### Python SDK
 ```python
-import termux_train as tt
+import amv_train as tt
 
 # High-level training interface
 trainer = tt.TermuxTrainer(
@@ -363,15 +363,15 @@ console.log(`Diffusion training completed with status: ${result.status}`);
 
 ## Target Runtime Compatibility & Adapter Hub
 
-All adapters generated by Termux-Train are zero-conversion artifacts accompanied by a standardized `_config.json` sidecar.
+All adapters generated by AMV-Train are zero-conversion artifacts accompanied by a standardized `_config.json` sidecar.
 
 | Target Runtime | Adapter Format | Companion Sidecar | Validation Status |
 | :--- | :--- | :--- | :--- |
 | **ComfyUI / Diffusers** | `.safetensors` (UNet CrossAttention) | `adapter_diffusion_config.json` | Validated by automated checks |
 | **llama.cpp / GGUF** | `.safetensors` / GGUF LoRA | `adapter_llm_config.json` | Validated by automated checks |
-| **termux-vision** | `.safetensors` (Multimodal Projector) | `adapter_vision_config.json` | Validated by automated checks |
-| **termux-stt** | `.safetensors` (Whisper Attention) | `adapter_stt_config.json` | Validated by automated checks |
-| **termux-tts** | `.safetensors` (Speaker Style) | `adapter_tts_config.json` | Validated by automated checks |
+| **amv-vision** | `.safetensors` (Multimodal Projector) | `adapter_vision_config.json` | Validated by automated checks |
+| **amv-stt** | `.safetensors` (Whisper Attention) | `adapter_stt_config.json` | Validated by automated checks |
+| **amv-tts** | `.safetensors` (Speaker Style) | `adapter_tts_config.json` | Validated by automated checks |
 | **bitnet.cpp** | `.safetensors` (Ternary 1.58-bit) | `bitnet_config.json` | Validated by automated checks |
 
 ---

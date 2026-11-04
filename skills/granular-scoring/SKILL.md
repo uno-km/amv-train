@@ -1,7 +1,7 @@
 ---
 name: granular-scoring
 description: >-
-  0-Point Baseline granular scoring test protocol for functions and features in termux-train.
+  0-Point Baseline granular scoring test protocol for functions and features in amv-train.
 ---
 
 # Granular Scoring Protocol (0-Point Baseline)

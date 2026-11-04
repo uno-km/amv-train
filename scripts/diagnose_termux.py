@@ -15,15 +15,15 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 # Ensure project root in sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train.utils.termux_env import get_device_info
+from amv_train.utils.termux_env import get_device_info
 
 def main():
-    print("🔍 Running termux-train Environment Diagnostics...")
+    print("🔍 Running amv-train Environment Diagnostics...")
     info = get_device_info()
     
     os.makedirs("reports", exist_ok=True)
@@ -32,7 +32,7 @@ def main():
     md_content = f"""# 📱 Android Termux Environment Diagnostic Report
 
 > **Generated on**: {os.popen('date /t' if os.name == 'nt' else 'date').read().strip()}
-> **Framework**: `termux-train` v0.1.0-alpha
+> **Framework**: `amv-train` v0.1.0-alpha
 
 ---
 

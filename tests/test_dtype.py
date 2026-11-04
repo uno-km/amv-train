@@ -13,7 +13,7 @@ Tests:
 """
 
 import pytest
-from termux_train import Tensor, tensor, zeros, ones, zeros_like, ones_like, randn, get_backend, set_backend, available_backends
+from amv_train import Tensor, tensor, zeros, ones, zeros_like, ones_like, randn, get_backend, set_backend, available_backends
 
 
 @pytest.mark.parametrize("backend_name", available_backends())

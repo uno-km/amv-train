@@ -15,7 +15,7 @@ Comprehensive Production ML Systems & Core Compiler Deep Hardening Test Suite:
 
 import math
 import pytest
-from termux_train import Tensor, nn, set_backend, available_backends
+from amv_train import Tensor, nn, set_backend, available_backends
 
 
 # =============================================================================

@@ -23,7 +23,7 @@ import pytest
 
 def main():
     print("=" * 70)
-    print("  🛡️  [termux-train] Production Granular Audit Scoring System")
+    print("  🛡️  [amv-train] Production Granular Audit Scoring System")
     print("  ⭐ Baseline: 0.0 Points | Target: 100.0 Points")
     print("=" * 70)
 

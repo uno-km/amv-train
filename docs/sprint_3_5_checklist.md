@@ -1,6 +1,6 @@
 # Sprint 3.5: Mobile Stability & Memory Hardening Checklist
 
-> **Repository:** `termux-train`
+> **Repository:** `amv-train`
 
 ---
 

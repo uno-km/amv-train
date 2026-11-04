@@ -15,15 +15,15 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, nn, set_backend, get_backend
+from amv_train import Tensor, nn, set_backend, get_backend
 
 def main():
     print("================================================================")
-    print("🧠 termux-train (AMEVA-Termux) - Sprint 3 Neural Network Demo")
+    print("🧠 amv-train (AMEVA-Termux) - Sprint 3 Neural Network Demo")
     print("================================================================")
     set_backend("auto")
     print(f"[*] Active Backend: {get_backend().name}\n")

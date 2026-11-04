@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0 OR Commercial-License
  */
 /**
- * Type declarations for termux-train Node.js SDK
+ * Type declarations for amv-train Node.js SDK
  * Open-Source under Apache License 2.0.
  */
 
@@ -46,7 +46,7 @@ export interface RecommendedTrainingConfig {
 }
 
 export interface DoctorReport {
-  framework: 'termux-train';
+  framework: 'amv-train';
   version: string;
   platform: DoctorPlatformInfo;
   hardware: DoctorHardwareInfo;

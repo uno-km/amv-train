@@ -28,11 +28,11 @@ if sys.stdout.encoding != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except (AttributeError, OSError) as rec_err:
-        sys.stderr.write(f'[termux-train] Notice: stream reconfigure failed: {rec_err}\n')
+        sys.stderr.write(f'[amv-train] Notice: stream reconfigure failed: {rec_err}\n')
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from termux_train import Tensor, nn, optim, runtime, set_backend, get_backend, available_backends
+from amv_train import Tensor, nn, optim, runtime, set_backend, get_backend, available_backends
 
 
 def run_lora_finetuning_demo(backend_name: str):
@@ -213,7 +213,7 @@ def run_lora_finetuning_demo(backend_name: str):
 
 def main():
     print("=" * 80)
-    print("📱 termux-train: On-Device LoRA Adapter Fine-Tuning & Deployment Demo")
+    print("📱 amv-train: On-Device LoRA Adapter Fine-Tuning & Deployment Demo")
     print("=" * 80)
 
     # 1. Pure Python Backend (Always run)

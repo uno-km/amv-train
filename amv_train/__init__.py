@@ -6,7 +6,7 @@ amv-train (AMEVA-Termux)
 Native On-Device Deep Learning & Autograd Training Framework for Android Termux.
 """
 
-__version__ = "3.0.0"
+__version__ = "3.0.3"
 __author__ = "AMEVA Team"
 
 from .backend import get_backend, set_backend, available_backends

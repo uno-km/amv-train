@@ -76,7 +76,7 @@ amv-train train --model tiny-transformer --data ./corpus.txt --vocab-slice 4096 
 ```
 
 ## Documentation & Repository
-- Official Documentation: https://uno-km.vercel.app/lib/train/
+- Official Documentation: https://ameva.pro/lib/train/
 - GitHub Repository: https://github.com/uno-km/amv-train
 
 ## License

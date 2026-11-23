@@ -1,6 +1,6 @@
 {
   "name": "amv-train",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "On-device deep learning & LoRA training framework utilizing device resources for Android Termux & ARM64",
   "main": "index.js",
   "types": "index.d.ts",
@@ -49,7 +49,7 @@
   },
   "dependencies": {},
   "optionalDependencies": {
-    "@ameva/runtime": ">=2.0.0"
+    "amv-runtime": ">=2.9.0"
   },
   "engines": {
     "node": ">=16.0.0"

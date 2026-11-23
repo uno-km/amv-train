@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "amv-train"
-version = "3.0.1"
+version = "3.0.2"
 description = "On-device deep learning & LoRA training framework utilizing device resources for Android Termux"
 readme = "README.md"
 authors = [{ name = "AMEVA Team", email = "zhfldk014745@naver.com" }]
@@ -39,14 +39,14 @@ keywords = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "ameva-component-sdk>=0.1.0,<2.0",
+    "amv-component-sdk>=0.1.0,<2.0",
 ]
 
 [project.optional-dependencies]
 accelerated = ["numpy>=1.20.0"]
 # [신규] Vulkan GPU 가속 그룹 — ameva-runtime 연동 시 사용
 # pip install amv-train[vulkan]
-vulkan = ["ameva-runtime>=2.0.0"]
+vulkan = ["amv-runtime>=2.9.0"]
 test = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
@@ -59,7 +59,7 @@ dev = [
 ]
 all = [
     "numpy>=1.20.0",
-    "ameva-runtime>=2.0.0",
+    "amv-runtime>=2.9.0",
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
 ]
